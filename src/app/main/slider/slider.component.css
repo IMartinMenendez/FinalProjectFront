@@ -23,8 +23,8 @@
   /*top: 0!important;*/
   /*right: 25% !important;*/
   cursor: ew-resize;
+  width: -webkit-fill-available!important;
   /*set the appearance of the slider:*/
-  width: 40px;
   height: 40px;
   background-color: #2196F3;
   opacity: 0.7;
@@ -42,7 +42,7 @@
 /*}*/
 
 img{
-  width: 140rem;
+  /*width: fit-content;*/
   max-height: 70rem;
 }
 

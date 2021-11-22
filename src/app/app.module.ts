@@ -9,6 +9,13 @@ import { CardEventComponent } from './main/card-event/card-event.component';
 import { WelcomeComponent } from './main/welcome/welcome.component';
 import { NavBarComponent } from './main/nav-bar/nav-bar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { EventComponent } from './components/event/event.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import {HttpClientModule} from "@angular/common/http";
+import { CarouselComponent } from './main/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +24,20 @@ import { AppRoutingModule } from './app-routing.module';
     SliderComponent,
     CardEventComponent,
     WelcomeComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    EventComponent,
+    PagenotfoundComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
