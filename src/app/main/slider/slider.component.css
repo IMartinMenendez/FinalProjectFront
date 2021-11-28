@@ -23,7 +23,7 @@
   /*top: 0!important;*/
   /*right: 25% !important;*/
   cursor: ew-resize;
-  width: -webkit-fill-available!important;
+  width: 100px!important;
   /*set the appearance of the slider:*/
   height: 40px;
   background-color: #2196F3;
@@ -37,13 +37,14 @@
   justify-content: center;
 }
 
-/*img{*/
-/*  width: 140rem;*/
-/*}*/
+img{
+  width: 140rem;
+  height: 60rem;
+}
 
 img{
   /*width: fit-content;*/
-  max-height: 70rem;
+  /*max-height: 70rem;*/
 }
 
 .panel{
@@ -64,6 +65,14 @@ img{
 
 }
 
+.phrase{
+  background-color: white;
+  opacity: 50%;
+  position: absolute;
+  bottom: 175px;
+}
+
 .text{
+  font-size: 60px;
   margin: 10px;
 }

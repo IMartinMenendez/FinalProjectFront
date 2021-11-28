@@ -5,6 +5,46 @@
   text-align: center;
 }
 
+.container{
+  justify-content: center;
+  margin: auto;
+}
+
+.group{
+  display: flex;
+}
+
+.carousel{
+  margin-bottom: 30px;
+}
+.card-text{
+  color: black;
+  margin-bottom: 40px;
+}
+.card{
+  margin-right: 20px;
+}
+.card-img-top{
+  max-height: 30rem;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 8%;
+  background-color: #2CADAD;
+}
+
+button{
+  color: black;
+
+}
+
+
+.carousel-size{
+  width: 80%;
+  justify-content: center;
+  margin: auto;
+}
+
 *,
 :after,
 :before {
@@ -25,7 +65,6 @@ section.ok {
 }
 
 p {
-  color: white;
   font-family: arial;
   display: table-cell;
   text-align: center;
@@ -92,3 +131,43 @@ p {
   }
 }
 
+::selection { background-color: #C3CFE2; }
+
+.text {
+  justify-content: center;
+  width: 60rem;
+  text-align: center;
+  margin: 50px auto 60px;
+  color: #000;
+  font-family: "Roboto",sans-serif;
+  font-size: 3.25rem;
+  line-height: 3rem;
+  padding-bottom: 0.75rem;
+  font-weight: 500;
+  border-bottom: 1px solid black;
+}
+
+.grid-list{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-column-gap: 30px;
+  text-align: center;
+  width: 80%;
+  justify-content: center;
+  margin: auto;
+}
+
+form{
+  width: 80%;
+  justify-content: center;
+  margin: auto;
+}
+
+.list-group{
+  width: 50% !important;
+  margin-right: 20px;
+}
+
+.form{
+  display: flex;
+}

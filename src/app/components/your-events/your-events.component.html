@@ -1,0 +1,40 @@
+<div class="grid">
+  <div class="sidebar">
+    <a href="#" routerLink="/">Home</a>
+    <a href="#" routerLink="/home">Your Profile</a>
+    <a class="active" href="#" routerLink="/your-events">Your created Events & Courses</a>
+    <a href="#" routerLink="/new-events">Create a new event</a>
+    <a href="#" routerLink="/new-course">Create a new course</a>
+  </div>
+
+  <div class="container">
+    <h1 class="text">Welcome Back Irene! </h1>
+    <h1 class="title">Your Events</h1>
+    <h1 class="date">Events for {{date}}</h1>
+
+    <div class="alert alert-success" role="alert" *ngIf="eventList.length <= 0">
+      No event found.
+    </div>
+
+    <div class="container" *ngIf="eventList.length > 0">
+      <div class="card" style="width: 18rem;" *ngFor="let meeting of eventList">
+        <img src="{{meeting.picture}}" class="card-img-top" alt="...">
+        <div class="card-body" >
+          <h5 class="card-title">{{meeting.title}}</h5>
+          <h5 class="card-title">{{meeting.date}}</h5>
+          <p class="card-text">{{meeting.description}}</p>
+          <a href="#" class="btn btn-primary">See Event</a>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="date">Events coming soon</h1>
+    <div class="empty-message" *ngIf="comingSoon.length <= 0">
+      <div class="alert alert-success" role="alert">
+        No events found. Click here to find events!
+      </div>
+    </div>
+  </div>
+
+</div>
+

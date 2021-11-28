@@ -7,6 +7,9 @@ import {RegisterComponent} from "./components/register/register.component";
 import {HomeComponent} from "./components/home/home.component";
 import {EventComponent} from "./components/event/event.component";
 import {PagenotfoundComponent} from "./components/pagenotfound/pagenotfound.component";
+import {YourEventsComponent} from "./components/your-events/your-events.component";
+import {NewEventComponent} from "./components/new-event/new-event.component";
+import {NewCourseComponent} from "./components/new-course/new-course.component";
 
 const routes: Routes = [
   {
@@ -21,14 +24,30 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  // {
-  //   path: 'home/{id}',
-  //   component: HomeComponent,
-  // },
-  // {
-  //   path: 'event/{id}',
-  //   component: EventComponent,
-  // },
+  {
+    path: 'home/:userId',
+    component: HomeComponent,
+  },
+  {
+    path: 'home/:userId/:new',
+    component: HomeComponent,
+  },
+  {
+    path: 'your-events/:userId',
+    component: YourEventsComponent,
+  },
+  {
+    path: 'new-events/:userId',
+    component: NewEventComponent,
+  },
+  {
+    path: 'new-course/:userId',
+    component: NewCourseComponent,
+  },
+  {
+    path: 'event/:postId',
+    component: EventComponent,
+  },
   // {
   //   path: '**',
   //   component: PagenotfoundComponent,

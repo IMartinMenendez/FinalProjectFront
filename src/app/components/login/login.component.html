@@ -9,7 +9,7 @@
                  autofocus="autofocus" required="required" class="input pass"/>
           <input name="user[password]" type="password" placeholder="Choose a password" required="required"
                  class="input pass"/>
-          <input type="submit" value="Ready to make an impact!" class="inputButton"/>
+          <input type="submit" (click)="login()" value="Ready to make an impact!" class="inputButton"/>
           <div class="text-center">
             don't have an account? <a routerLink="/register" id="login_id">Sign Up</a>
           </div>

@@ -4,16 +4,16 @@
     <div class="container">
       <div id="logbox">
         <h3 class="text-center margin-button pt-5">Create an account</h3>
-        <form id="signup" method="post" action="/signup">
-          <input name="user[name]" type="text" placeholder="What's your username?" pattern="^[\w]{3,16}$"
+        <form id="signup" method="post" action="/signup" [formGroup]="registerForm">
+          <input name="user[name]" type="text" placeholder="What's your name?" formControlName="name" [(ngModel)]="name" pattern="^[\w]{3,16}$"
                  autofocus="autofocus" required="required" class="input pass"/>
-          <input name="user[password]" type="password" placeholder="Choose a password" required="required"
-                 class="input pass"/>
-          <input name="user[password2]" type="password" placeholder="Confirm password" required="required"
-                 class="input pass"/>
-          <input name="user[email]" type="email" placeholder="Email address" class="input pass"/>
-          <input type="submit" value="Ready to make an impact!" class="inputButton"/>
+          <input name="user[email]" type="email" placeholder="Email address" formControlName="email" [(ngModel)]="email" class="input pass"/>
           <div class="text-center">
+          <input name="user[password]" type="password" placeholder="Choose a password" formControlName="password" [(ngModel)]="password" required="required"
+                 class="input pass"/>
+          <input name="user[password2]" type="password" placeholder="Confirm password" formControlName="passwordConfirmation" [(ngModel)]="password2" required="required"
+                 class="input pass"/>
+            <input type="submit" (click)="login()" [disabled]="isInvalidForm()" value="Ready to make an impact!" class="inputButton"/>
             already have an account? <a routerLink="/login" id="login_id">login</a>
           </div>
         </form>
