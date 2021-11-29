@@ -10,6 +10,7 @@ import {PagenotfoundComponent} from "./components/pagenotfound/pagenotfound.comp
 import {YourEventsComponent} from "./components/your-events/your-events.component";
 import {NewEventComponent} from "./components/new-event/new-event.component";
 import {NewCourseComponent} from "./components/new-course/new-course.component";
+import {AllEventsComponent} from "./components/all-events/all-events.component";
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'event/:postId',
     component: EventComponent,
+  },
+  {
+    path: 'all-events',
+    component: AllEventsComponent,
   },
   // {
   //   path: '**',

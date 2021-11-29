@@ -19,6 +19,7 @@ import { CarouselComponent } from './main/carousel/carousel.component';
 import { YourEventsComponent } from './components/your-events/your-events.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { NewCourseComponent } from './components/new-course/new-course.component';
+import { AllEventsComponent } from './components/all-events/all-events.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NewCourseComponent } from './components/new-course/new-course.component
     CarouselComponent,
     YourEventsComponent,
     NewEventComponent,
-    NewCourseComponent
+    NewCourseComponent,
+    AllEventsComponent,
   ],
   imports: [
     BrowserModule,

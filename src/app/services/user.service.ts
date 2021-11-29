@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {User} from "../models/user.model";
+import {CreateUserModel} from "../models/createUser.model";
+import {catchError, retry} from "rxjs/operators";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -24,8 +26,26 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + '/Users/' + id);
   }
 
-  createNewUser(user: User): Observable<User> {
-    return this.http.post<User>(this.baseUrl + '/Users', {
+  getUserByEmail(email: string, password: string): Observable<User> | Observable<any>{
+    return this.http.get<User>(this.baseUrl + '/User?email=' + email + "&password=" + password).pipe(
+      catchError(error => {
+        let errorMsg;
+        if (error.error instanceof ErrorEvent) {
+          errorMsg = `Error: ${error.error.message}`;
+          window.alert(errorMsg);
+          return errorMsg;
+        } else {
+           errorMsg = `Error: ${error.message}`;
+          window.alert(errorMsg);
+          return errorMsg;
+        }
+      })
+    );
+  }
+
+
+  createNewUser(user: CreateUserModel): Observable<number> {
+    return this.http.post<number>(this.baseUrl + '/Users', {
       name: user.name,
       email: user.email,
       role: user.role,
@@ -33,4 +53,5 @@ export class UserService {
       password: user.password,
     }, httpOptions);
   }
+
 }

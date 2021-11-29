@@ -29,7 +29,7 @@
     <input type="text" class="form-control" id="inputPassword2" placeholder="Madrid">
     </div>
   </div>
-    <button type="submit" class="btn btn-primary ">Find Events!</button>
+    <button type="submit" class="btn btn-primary" [routerLink]="['/all-events']">Find Events!</button>
 </form>
 </div>
 <h1 class="text date">Coming soon!</h1>
@@ -39,7 +39,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
           <div class="card-group">
-            <div class="card" *ngFor="let meeting of firstPage">
+            <div class="card" style="width: 46rem;" *ngFor="let meeting of firstPage">
               <img src="{{meeting.picture}}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{meeting.title}}</h5>
@@ -54,9 +54,9 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item" data-bs-interval="2000">
+        <div class="carousel-item" data-bs-interval="10000">
           <div class="card-group">
-            <div class="card" *ngFor="let meeting of secondPage">
+            <div class="card" style="width: 46rem;" *ngFor="let meeting of secondPage">
               <img src="{{meeting.picture}}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{meeting.title}}</h5>
@@ -71,9 +71,9 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" data-bs-interval="10000">
           <div class="card-group">
-            <div class="card" *ngFor="let meeting of thirdPage">
+            <div class="card" style="width: 46rem;" *ngFor="let meeting of thirdPage">
               <img src="{{meeting.picture}}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{meeting.title}}</h5>
@@ -83,7 +83,7 @@
                 </div>
                 <p class="card-text">{{meeting.description}}</p>
                 <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success">See this Event</a>
-                <button type="button" class="btn btn-warning">Join!</button>
+                <button type="button" (click)="joinMeeting(meeting.id)" class="btn btn-warning">Join!</button>
               </div>
             </div>
           </div>

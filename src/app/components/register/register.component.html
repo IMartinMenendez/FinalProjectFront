@@ -13,7 +13,10 @@
                  class="input pass"/>
           <input name="user[password2]" type="password" placeholder="Confirm password" formControlName="passwordConfirmation" [(ngModel)]="password2" required="required"
                  class="input pass"/>
-            <input type="submit" (click)="login()" [disabled]="isInvalidForm()" value="Ready to make an impact!" class="inputButton"/>
+            <div class="alert alert-info" role="alert" *ngIf="registerForm.invalid && emailInput.touched && passwordInput.touched && nameInput.touched">
+              Please check the fields again!
+            </div>
+            <input type="submit" (click)="signUp()" [disabled]="isInvalidForm()" value="Ready to make an impact!" class="inputButton"/>
             already have an account? <a routerLink="/login" id="login_id">login</a>
           </div>
         </form>

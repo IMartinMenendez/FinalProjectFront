@@ -3,6 +3,10 @@ import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CreateUserModel} from "../../models/createUser.model";
+import {Token} from "@angular/compiler";
+import {TokenStorageService} from "../../services/token.service";
+import {AuthSessionService} from "../../services/auth-session.service";
 
 @Component({
   selector: 'app-register',
@@ -11,7 +15,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
 
-  user!: User;
+  user!: CreateUserModel;
   name: string = "";
   email: string = "";
   password: string = "";
@@ -26,7 +30,7 @@ export class RegisterComponent implements OnInit {
   passwordInput: FormControl;
   passwordConfirmationInput: FormControl;
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private tokenService: TokenStorageService, private authSessionService: AuthSessionService) {
     this.nameInput = new FormControl('',  Validators.required );
     this.emailInput = new FormControl('', [Validators.required, Validators.email]);
     this.passwordInput = new FormControl('', [Validators.required, Validators.minLength(8)]);
@@ -43,11 +47,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
-    this.user = new User(this.name, this.email, this.role, this.isAdmin, this.password)
+  signUp() {
+    this.user = new CreateUserModel(this.name, this.email, this.role, this.isAdmin, this.password)
     this.userService.createNewUser(this.user).subscribe(userId => {
-        console.log(userId)
-        this.router.navigate(['/home', userId, "new"])
+        this.router.navigate(['/login'])
       });
   }
 

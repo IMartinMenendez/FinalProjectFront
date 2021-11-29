@@ -3,6 +3,8 @@ import {EventService} from "../../services/event.service";
 import { Meeting } from "../../models/meeting.model";
 import {CourseService} from "../../services/course.service";
 import {Course} from "../../models/course.model";
+import {TokenStorageService} from "../../services/token.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-welcome',
@@ -17,8 +19,9 @@ export class WelcomeComponent implements OnInit {
   thirdPage!: Meeting[];
   courseList!: Course[];
   end: number = 3;
+  modalOpen: boolean = false;
 
-  constructor(private eventService: EventService, private courseService: CourseService) {
+  constructor(private eventService: EventService, private courseService: CourseService, private tokenService: TokenStorageService, private router: Router) {
 
   }
 
@@ -46,4 +49,15 @@ export class WelcomeComponent implements OnInit {
   goToLink(url: string){
     window.open(url, "_blank");
   }
+
+joinMeeting(meetingId: number){
+    if(!this.tokenService.getToken()){
+      this.router.navigate(['/login'])
+    } else if (this.tokenService.getUser()) {
+      this.eventService.addAttendee(meetingId, this.tokenService.getUser().id).subscribe(answer => {
+        this.modalOpen = true;
+      })
+    }
+}
+
 }

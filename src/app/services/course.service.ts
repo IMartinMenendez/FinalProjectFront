@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { Course } from "../models/course.model";
 import {Meeting} from "../models/meeting.model";
+import {TokenStorageService} from "./token.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CourseService {
 
   private readonly baseUrl: string = 'http://localhost:8082';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenService: TokenStorageService) { }
 
   getCourse(): Observable<Course[]> {
     return this.http.get<Course[]>(this.baseUrl + '/Courses');
@@ -21,7 +22,7 @@ export class CourseService {
     return this.http.get<Course>(this.baseUrl + '/Courses/'+id);
   }
 
-  getEventByUserId(userId: number): Observable<Course[]> {
-    return this.http.get<Course[]>(this.baseUrl + '/Course/'+ userId);
+  getCourseByUserId(userId: number): Observable<Course[]> {
+    return this.http.get<Course[]>(this.baseUrl + '/Course/'+ userId, {headers: {'X-Auth-Token': this.tokenService.getToken() || ''}});
   }
 }

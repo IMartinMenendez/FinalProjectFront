@@ -9,6 +9,13 @@
   margin-bottom: 40px;
 }
 
+.grid{
+  display: inline-grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 100px;
+  margin-bottom: 30px;
+}
+
 .card{
   width: 22rem!important;
 }

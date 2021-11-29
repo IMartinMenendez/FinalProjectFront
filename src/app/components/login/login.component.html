@@ -4,12 +4,18 @@
     <div class="container">
       <div id="logbox">
         <h3 class="text-center margin-button pt-5">Login</h3>
-        <form id="signup" method="post" action="/signup">
-          <input name="user[name]" type="text" placeholder="What's your username?" pattern="^[\w]{3,16}$"
-                 autofocus="autofocus" required="required" class="input pass"/>
-          <input name="user[password]" type="password" placeholder="Choose a password" required="required"
+        <form id="signup" method="post" action="/signup" [formGroup]="registerForm">
+          <input name="user[name]" type="email" placeholder="What's your email?" [(ngModel)]="emailUser" formControlName="email"
+                required="required" class="input pass"/>
+          <input name="user[password]" type="password" placeholder="Choose a password" [(ngModel)]="passwordUser" formControlName="password" required="required"
                  class="input pass"/>
-          <input type="submit" (click)="login()" value="Ready to make an impact!" class="inputButton"/>
+          <div class="alert alert-info" role="alert" *ngIf="registerForm.invalid && emailInput.touched && passwordInput.touched ">
+            Please check the fields again!
+          </div>
+          <div class="alert alert-info" role="alert" *ngIf="error">
+            {{error}}
+          </div>
+          <input type="submit" (click)="login()" [disabled]="registerForm.invalid" value="Ready to make an impact!" class="inputButton"/>
           <div class="text-center">
             don't have an account? <a routerLink="/register" id="login_id">Sign Up</a>
           </div>

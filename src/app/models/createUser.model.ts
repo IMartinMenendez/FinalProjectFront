@@ -1,7 +1,5 @@
-export class User{
+export class CreateUserModel{
   constructor(
-    // private _eventId: number[],
-    private _id: string,
     private _name: string,
     private _email: string,
     private _role: string,
@@ -10,19 +8,6 @@ export class User{
 
   ) {}
 
-  // get eventId(): number[] {
-  //   return this._eventId;
-  // }
-
-
-  get id(): string {
-    return this._id;
-  }
-
-  set id(value: string) {
-    this._id = value;
-  }
-
   get email(): string {
     return this._email;
   }
@@ -30,10 +15,6 @@ export class User{
   set email(value: string) {
     this._email = value;
   }
-  //
-  // set eventId(value: number[]) {
-  //   this._eventId = value;
-  // }
 
   get name(): string {
     return this._name;

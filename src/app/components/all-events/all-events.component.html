@@ -1,0 +1,38 @@
+<div class="center">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search Event"  aria-describedby="basic-addon2">
+    <span class="input-group-text btn-primary" id="basic-addon2"><i class="fa fa-search"></i></span>
+  </div>
+  <div class="grid">
+    <div class="card" style="width: 50rem;" *ngFor="let meeting of allEvents">
+      <img src="{{meeting.picture}}" class="card-img-top" alt="...">
+      <div class="card-body" >
+        <h5 class="card-title">{{meeting.title}}</h5>
+        <div class="group">
+          <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+          <h5 class="card-title"> | {{meeting.place}}</h5>
+        </div>
+        <p class="card-text">{{meeting.description}}</p>
+        <a href="#" class="btn btn-primary" [routerLink]="['/event', meeting.id]">See Event</a>
+        <button type="button" class="btn btn-warning">Join!</button>
+      </div>
+    </div>
+  </div>
+  <div class="center-display">
+  <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <span class="page-link">Previous</span>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active" aria-current="page">
+        <span class="page-link">2</span>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+  </div>
+</div>

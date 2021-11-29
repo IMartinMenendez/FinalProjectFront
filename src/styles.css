@@ -1,2 +1,6 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
+.group{
+  display: flex;
+  justify-content: space-between;
+}

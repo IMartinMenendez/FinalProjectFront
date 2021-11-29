@@ -2,9 +2,10 @@
   <div class="sidebar">
     <a href="#" routerLink="/">Home</a>
     <a class="active" href="#" routerLink="/home">Your Profile</a>
-    <a href="#" routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
-    <a href="#" routerLink="/new-events/{{userId}}">Create a new event</a>
-    <a href="#" routerLink="/new-course/{{userId}}">Create a new course</a>
+    <a routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
+    <a routerLink="/new-events/{{userId}}">Create a new event</a>
+    <a routerLink="/new-course/{{userId}}">Create a new course</a>
+    <button (click)="logout()">Log Out</button>
   </div>
 
   <div class="container">
@@ -12,18 +13,22 @@
     <h1 class="title">Your Events</h1>
     <h1 class="date">Events for {{date}}</h1>
 
-    <div class="alert alert-success" role="alert" *ngIf="eventList.length <= 0">
+    <div class="alert alert-success" role="alert" *ngIf="attendeeEvents.length <= 0">
         No event found.
     </div>
 
-    <div class="container" *ngIf="eventList.length > 0">
-    <div class="card" style="width: 18rem;" *ngFor="let meeting of eventList">
+    <div class="grid" *ngIf="attendeeEvents.length > 0">
+    <div class="card" style="width: 18rem;" *ngFor="let meeting of attendeeEvents">
       <img src="{{meeting.picture}}" class="card-img-top" alt="...">
       <div class="card-body" >
         <h5 class="card-title">{{meeting.title}}</h5>
-        <h5 class="card-title">{{meeting.date}}</h5>
+        <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+        <div class="group">
+          <h5 class="card-title" style="margin-right: 50px">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+          <h5 class="card-title"> | {{meeting.place}}</h5>
+        </div>
         <p class="card-text">{{meeting.description}}</p>
-        <a href="#" class="btn btn-primary">See Event</a>
+        <a href="#" class="btn btn-primary" [routerLink]="['/event', meeting.id]">See Event</a>
       </div>
     </div>
    </div>
