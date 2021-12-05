@@ -50,14 +50,14 @@ export class WelcomeComponent implements OnInit {
     window.open(url, "_blank");
   }
 
-joinMeeting(meetingId: number){
-    if(!this.tokenService.getToken()){
-      this.router.navigate(['/login'])
-    } else if (this.tokenService.getUser()) {
-      this.eventService.addAttendee(meetingId, this.tokenService.getUser().id).subscribe(answer => {
-        this.modalOpen = true;
-      })
-    }
+joinMeeting(meetingId: number) {
+  if (!this.tokenService.getToken()) {
+    this.router.navigate(['/login'])
+  } else if (this.tokenService.getUser()) {
+    this.eventService.addAttendee(meetingId, this.tokenService.getUser().id).subscribe(answer => {
+      this.modalOpen = true;
+    })
+  }
 }
 
 }

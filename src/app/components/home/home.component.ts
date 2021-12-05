@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   eventList: Meeting[] = [];
   comingSoon: Meeting[] = [];
   courses: Course[] = [];
+  modalOpen: boolean = false;
 
   constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService) {
     this.date = new Date().toLocaleDateString("en-US", {
@@ -69,6 +70,15 @@ export class HomeComponent implements OnInit {
       this.user = user;
     })
   }
+
+  unattend(id: number){
+    this.eventService.removeAttendee(id, this.tokenService.getUser().id).subscribe(response => {
+      this.modalOpen = true;
+      this.eventService.getEventsByAttendee(this.tokenService.getUser().id).subscribe(event => {
+        this.attendeeEvents = event;
+      })
+    })
+}
 
   logout(){
     this.authSessionService.logout();

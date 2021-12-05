@@ -1,0 +1,125 @@
+.title{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.grid{
+  display: inline-grid;
+  grid-template-columns: 20% 31% 31%;
+  grid-gap: 93px;
+  margin-bottom: 30px;
+}
+
+.card{
+  width: 22rem!important;
+}
+.date{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding-bottom: 0.75rem;
+  font-weight: 500;
+  border-bottom:1px solid black;
+}
+
+.empty-message{
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #f8f9fa!important;
+  height: 69rem;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+
+::selection { background-color: #C3CFE2; }
+
+.text {
+  font-size: 80px;
+  background: linear-gradient(to right, #80ED99 0%, #3A6351 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+font {
+  size: 20vw;
+  family: 'Poppins', sans-serif;
+}
+
+.header{
+  min-height: 10%;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+
+.body{
+  min-height: 62%;
+  background-color: #c5c4c4;
+  text-align: center;
+  margin: auto;
+}
+
+img{
+  width: 40%;
+}
+
+.img-size{
+  width: 80%;
+}
+

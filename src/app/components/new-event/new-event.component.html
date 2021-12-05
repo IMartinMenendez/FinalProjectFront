@@ -1,1 +1,56 @@
-<p>new-event works!</p>
+<div class="grid">
+  <div class="sidebar">
+    <a routerLink="/">Home</a>
+    <a routerLink="/home">Your Profile</a>
+    <a routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
+    <a class="active" routerLink="/new-events/{{userId}}">Create a new event</a>
+    <a routerLink="/new-course/{{userId}}">Create a new course</a>
+    <button (click)="logout()">Log Out</button>
+  </div>
+    <form >
+      <h1 class="title" style="color: #008294;">Your New Event Details</h1>
+      <h1 class="date">Congratulations! You have decided to make a great impact in the world!</h1>
+      <div class="container">
+      <div style="margin-top: 10px">
+        <label class="form-label">Event Date</label>
+        <input type="date" class="form-control" name="date" [(ngModel)]="event.date" placeholder="05/07/2020">
+      </div>
+        <div style="margin-top: 10px">
+        <label class="form-label">Event Title</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="event.title" placeholder="05/07/2020">
+      </div>
+        <div style="margin-top: 10px">
+        <label class="form-label">Event Description</label>
+        <input type="text" class="form-control" name="description" [(ngModel)]="event.description"
+               placeholder="This event is to contribute with...">
+      </div>
+        <div style="margin-top: 10px">
+        <label class="form-label">Event Picture</label>
+        <input type="text" class="form-control" name="picture" [(ngModel)]="event.picture" placeholder="http://wwww.pictureevent.com">
+      </div>
+        <div style="margin-top: 10px">
+        <label class="form-label">Event Place</label>
+        <input type="text" class="form-control" name="place" [(ngModel)]="event.place" placeholder="Where is the event happening?">
+      </div>
+        <div style="margin-top: 10px">
+        <label class="form-label">Event Type</label>
+        <input type="text" class="form-control"  name="type" placeholder="ONG, Plant trees, clean beaches...">
+      </div>
+      </div>
+      <button type="button" (click)="createEvent()" class="btn btn-primary">Create!</button>
+    </form>
+    <div>
+      <h1 class="title">Your New Event Preview</h1>
+      <div class="body">
+        <h3>{{event.date | date: 'dd-MMMM-yyyy'}}</h3>
+        <h1>{{event.title}}</h1>
+        <h4>{{userName}}</h4>
+        <img class="img-size" src="{{event.picture}}">
+        <h3>Details:</h3>
+        <h4>{{event.description}}</h4>
+        <h3>Attendees:</h3>
+        <h4>{{event.attendees}}</h4>
+        <button type="button" class="btn btn-warning">Join!</button>
+      </div>
+    </div>
+  </div>

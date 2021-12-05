@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {EventService} from "../../services/event.service";
 import {Meeting} from "../../models/meeting.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CourseService} from "../../services/course.service";
 import {Course} from "../../models/course.model";
+import {AuthSessionService} from "../../services/auth-session.service";
+import {TokenStorageService} from "../../services/token.service";
 
 @Component({
   selector: 'app-your-events',
@@ -19,7 +21,7 @@ export class YourEventsComponent implements OnInit {
   modalOpen: boolean = false;
   EventId!: number;
 
-  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private courseService: CourseService) {
+  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService, private router: Router) {
     this.userId = this.activatedRoute.snapshot.params['userId'];
     this.date = new Date().toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }
@@ -50,6 +52,12 @@ export class YourEventsComponent implements OnInit {
         meeting.id != this.EventId )
     })
     this.modalOpen = false;
+  }
+
+  logout(){
+    this.authSessionService.logout();
+    this.tokenService.signOut();
+    this.router.navigate(['/'])
   }
 
 

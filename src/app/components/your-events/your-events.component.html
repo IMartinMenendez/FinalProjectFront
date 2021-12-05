@@ -5,6 +5,7 @@
     <a class="active" href="#" routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
     <a href="#" routerLink="/new-events/{{userId}}">Create a new event</a>
     <a href="#" routerLink="/new-course/{{userId}}">Create a new course</a>
+    <button (click)="logout()">Log Out</button>
   </div>
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -52,7 +53,6 @@
         No events found. Click here to find events!
       </div>
     </div>
-  </div>
 
   <h1 class="date">Your Courses</h1>
   <div class="grid" >
@@ -64,6 +64,7 @@
       </div>
     </div>
   </div>
-
+  </div>
 </div>
+
 

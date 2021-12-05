@@ -11,7 +11,7 @@
 
 .grid{
   display: inline-grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 24% 62%;
   grid-gap: 100px;
   margin-bottom: 30px;
 }

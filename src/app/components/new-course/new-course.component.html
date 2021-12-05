@@ -1,1 +1,42 @@
-<p>new-course works!</p>
+<div class="grid">
+  <div class="sidebar">
+    <a routerLink="/">Home</a>
+    <a routerLink="/home">Your Profile</a>
+    <a routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
+    <a routerLink="/new-events/{{userId}}">Create a new event</a>
+    <a class="active" routerLink="/new-course/{{userId}}">Create a new course</a>
+    <button (click)="logout()">Log Out</button>
+  </div>
+  <div>
+    <h1 class="title"  style="color: #008294;">Your New Course Details</h1>
+    <h1 class="date">Congratulations! You have decided to make a great impact in the world!</h1>
+    <div class="container">
+      <div style="margin-top: 10px">
+        <label class="form-label">Event Title</label>
+        <input type="text" class="form-control" [(ngModel)]="course.title" placeholder="05/07/2020">
+      </div>
+      <div style="margin-top: 10px">
+        <label class="form-label">Event Description</label>
+        <input type="text" class="form-control" [(ngModel)]="course.description"
+               placeholder="This event is to contribute with...">
+      </div>
+      <div style="margin-top: 10px">
+        <label class="form-label">Event Picture</label>
+        <input type="text" class="form-control" [(ngModel)]="course.picture" placeholder="add here your picture link">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="create()">Create!</button>
+  </div>
+  <div>
+    <h1 class="title">Your New Course Preview</h1>
+    <div class="body">
+      <h1>{{course.title}}</h1>
+      <h4>{{userName}}</h4>
+      <img class="img-size" src="{{course.picture}}" alt="">
+      <h3>Details:</h3>
+      <h4>{{course.description}}</h4>
+      <button type="button" class="btn btn-warning">Go to the course!</button>
+    </div>
+  </div>
+</div>
+

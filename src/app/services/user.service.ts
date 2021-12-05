@@ -26,24 +26,6 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + '/Users/' + id);
   }
 
-  getUserByEmail(email: string, password: string): Observable<User> | Observable<any>{
-    return this.http.get<User>(this.baseUrl + '/User?email=' + email + "&password=" + password).pipe(
-      catchError(error => {
-        let errorMsg;
-        if (error.error instanceof ErrorEvent) {
-          errorMsg = `Error: ${error.error.message}`;
-          window.alert(errorMsg);
-          return errorMsg;
-        } else {
-           errorMsg = `Error: ${error.message}`;
-          window.alert(errorMsg);
-          return errorMsg;
-        }
-      })
-    );
-  }
-
-
   createNewUser(user: CreateUserModel): Observable<number> {
     return this.http.post<number>(this.baseUrl + '/Users', {
       name: user.name,

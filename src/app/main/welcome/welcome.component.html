@@ -2,10 +2,10 @@
   <a href="#welcome" class="scroll-down" address="true"></a>
 </section>
 <section>
-  <table id="welcome" class="welcome">
+  <table id="welcome" class="welcome" style="width: 50%;">
     <tr>
       <td>
-        <h1>
+        <h1 style="color: #008294; margin-bottom: 10px">
           Welcome to the change!
         </h1>
         <h3>
@@ -15,24 +15,46 @@
       </td>
     </tr>
   </table>
+  <table class="welcome">
+    <tr>
+      <td>
+        <img class="image-description" src="assets/findwhatyoulove.png" alt="">
+      </td>
+      <td>
+        <img class="image-description" src="assets/createevents2.png" alt="">
+      </td>
+      <td>
+        <img class="image-description" src="assets/sharewithyourcomunity.png" alt="">
+      </td>
+    </tr>
+    <tr>
+      <td><h2 style="color: #008294;">Find what you love</h2></td>
+      <td><h2 style="color: #008294;">Create an event</h2></td>
+      <td><h2 style="color: #008294;">Make it count!</h2></td>
+    </tr>
+  </table>
 </section>
 <h1 class="text date">What are you looking for?</h1>
 <div class="container">
-<form>
-  <div class="form">
-    <div class="list-group">
-    <label for="inputPassword2" >Type of Event</label>
-    <input type="text" class="form-control" id="inputPassword" placeholder="ONG">
+  <form>
+    <div class="form">
+      <div class="list-group">
+        <label for="inputPassword2">Type of Event</label>
+        <input type="text" class="form-control" id="inputPassword" placeholder="ONG">
+      </div>
+      <div class="list-group">
+        <label for="inputPassword2">Location</label>
+        <input type="text" class="form-control" id="inputPassword2" placeholder="Madrid">
+      </div>
     </div>
-    <div class="list-group">
-    <label for="inputPassword2" >Location</label>
-    <input type="text" class="form-control" id="inputPassword2" placeholder="Madrid">
+    <div class="center">
+      <button type="submit" style="margin-top: 30px" class="btn btn-primary btn-lg button"
+              [routerLink]="['/all-events']">Find Events!
+      </button>
     </div>
-  </div>
-    <button type="submit" class="btn btn-primary" [routerLink]="['/all-events']">Find Events!</button>
-</form>
+  </form>
 </div>
-<h1 class="text date">Coming soon!</h1>
+<h1 class="text date" style="margin-top: 100px">Coming soon!</h1>
 <section class="carousel">
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-size">
@@ -44,12 +66,17 @@
               <div class="card-body">
                 <h5 class="card-title">{{meeting.title}}</h5>
                 <div class="group">
-                <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-                <h5 class="card-title"> | {{meeting.place}}</h5>
-              </div>
+                  <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+                  <h5 class="card-title"> | {{meeting.place}}</h5>
+                </div>
                 <p class="card-text">{{meeting.description}}</p>
-                <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success">See this Event</a>
-                <button type="button" class="btn btn-warning">Join!</button>
+                <div class="center">
+                  <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
+                    Event</a>
+                  <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
+                          data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -61,12 +88,17 @@
               <div class="card-body">
                 <h5 class="card-title">{{meeting.title}}</h5>
                 <div class="group">
-                <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-                <h5 class="card-title"> | {{meeting.place}}</h5>
-              </div>
+                  <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+                  <h5 class="card-title"> | {{meeting.place}}</h5>
+                </div>
                 <p class="card-text">{{meeting.description}}</p>
-                <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success">See this Event</a>
-                <button type="button" class="btn btn-warning">Join!</button>
+                <div class="center">
+                  <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
+                    Event</a>
+                  <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
+                          data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -78,12 +110,17 @@
               <div class="card-body">
                 <h5 class="card-title">{{meeting.title}}</h5>
                 <div class="group">
-                <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+                  <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
                   <h5 class="card-title"> | {{meeting.place}}</h5>
                 </div>
                 <p class="card-text">{{meeting.description}}</p>
-                <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success">See this Event</a>
-                <button type="button" (click)="joinMeeting(meeting.id)" class="btn btn-warning">Join!</button>
+                <div class="center">
+                  <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
+                    Event</a>
+                  <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
+                          data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -110,7 +147,24 @@
         <a (click)="goToLink(course.link)">See this course</a>
       </div>
     </div>
-    <button type="button" (click)="seeMore()" class="btn btn-success">See more!</button>
+  </div>
+  <div class="center">
+    <button type="button" (click)="seeMore()" class="btn btn-success btn-lg button">See more!</button>
   </div>
 
 </section>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Congrats! You successfully joined to this event!</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="modalOpen = false" class="btn btn-secondary" data-bs-dismiss="modal">Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

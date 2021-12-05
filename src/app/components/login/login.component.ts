@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
           this.tokenService.saveToken(user.token);
           this.tokenService.saveUser(user);
           this.router.navigate(['/home', user.id])
-        })
-  }
+
+        },
+          error => this.error = "User or Password incorrect"
+  )}
 }

@@ -1,8 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Meeting} from "../models/meeting.model";
 import {TokenStorageService} from "./token.service";
+import {CreateMeetingModel} from "../models/createMeeting.model";
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+}
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +55,16 @@ export class EventService {
     return this.http.put<Meeting>(this.baseUrl + '/Event/Attendees-remove/' + id, attendeesId);
   }
 
-  createEvent(event: Event): Observable<Meeting> {
-    return this.http.post<Meeting>(this.baseUrl + '/Events', event);
+  createEvent(event: CreateMeetingModel): Observable<any> {
+    return this.http.post<any>(this.baseUrl + '/Events', {
+      type: event.type,
+      date: event.date,
+      place: event.place,
+      title: event.title,
+      description: event.description,
+      creator: event.creator,
+      attendees: event.attendees,
+      picture: event.picture
+    }, httpOptions);
   }
 }

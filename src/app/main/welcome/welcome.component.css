@@ -10,6 +10,11 @@
   margin: auto;
 }
 
+.button{
+  margin: 10px;
+  padding: 3px;
+}
+
 .carousel{
   margin-bottom: 30px;
 }
@@ -33,7 +38,6 @@ button{
   color: black;
 
 }
-
 
 .carousel-size{
   width: 80%;
@@ -75,7 +79,7 @@ p {
 
 .scroll-down {
   position: absolute;
-  bottom: 30px;
+  bottom: 123px;
   left: 50%;
   margin-left: -16px;
   display: block;
@@ -133,7 +137,7 @@ p {
   justify-content: center;
   width: 60rem;
   text-align: center;
-  margin: 50px auto 60px;
+  margin: 200px auto 60px;
   color: #000;
   font-family: "Roboto",sans-serif;
   font-size: 3.25rem;
@@ -166,4 +170,9 @@ form{
 
 .form{
   display: flex;
+}
+
+.image-description{
+  margin-top: 80px;
+  max-width: 76%;
 }
