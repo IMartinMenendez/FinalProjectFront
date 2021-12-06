@@ -4,6 +4,9 @@ import {Meeting} from "../../models/meeting.model";
 import {TokenStorageService} from "../../services/token.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
+import {NavBarComponent} from "../../main/nav-bar/nav-bar.component";
+import {NotificationService} from "../../services/notification.service";
+import {Notification} from "../../models/notification.model";
 
 @Component({
   selector: 'app-all-events',

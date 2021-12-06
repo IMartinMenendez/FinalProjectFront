@@ -14,7 +14,14 @@
     </ul>
   </div>
 
-  <i class='fas fa-bell' style='font-size:36px'></i>
+  <div class="dropdown">
+  <i class='fas fa-bell' style='font-size:36px' type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+    <span [ngClass]="{'dot' : isNofification()}"></span>
+  </i>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <li *ngFor="let notification of getArrayNofifications()"><button class="dropdown-item" (click)="notificationRead(notification.id)" type="button">{{notification.message}}</button></li>
+    </ul>
+  </div>
   <a style="margin-right: 20px" (click)="goToHome()" class="text-sm-right nav-link"><i class='fas fa-user-circle' style='font-size:48px;color:#008294;'></i></a>
 </nav>
 

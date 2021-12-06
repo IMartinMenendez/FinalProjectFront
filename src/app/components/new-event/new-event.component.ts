@@ -35,6 +35,7 @@ export class NewEventComponent implements OnInit {
   }
 
   createEvent(): void{
+    this.event.creator = this.userId;
     this.eventService.createEvent(this.event).subscribe(event => {
       this.router.navigate(['/your-events/' + this.userId])
     });

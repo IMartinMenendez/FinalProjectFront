@@ -7,6 +7,9 @@ import {Course} from "../../models/course.model";
 import {AuthSessionService} from "../../services/auth-session.service";
 import {TokenStorageService} from "../../services/token.service";
 import {User} from "../../models/user.model";
+import {NavBarComponent} from "../../main/nav-bar/nav-bar.component";
+import {NotificationService} from "../../services/notification.service";
+import {Notification} from "../../models/notification.model";
 
 @Component({
   selector: 'app-your-events',
@@ -23,7 +26,7 @@ export class YourEventsComponent implements OnInit {
   EventId!: number;
   userName: string;
 
-  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService, private router: Router) {
+  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService, private router: Router, private notificationService: NotificationService) {
     this.userName = tokenService.getUser().name;
     this.userId = this.activatedRoute.snapshot.params['userId'];
     this.date = new Date().toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
@@ -37,6 +40,8 @@ export class YourEventsComponent implements OnInit {
     this.courseService.getCourseByUserId(this.userId).subscribe( course => {
       this.courseList = course;
     })
+
+    this.getNotifications();
   }
 
   confirmationDelete(id: number){
@@ -61,6 +66,16 @@ export class YourEventsComponent implements OnInit {
     this.authSessionService.logout();
     this.tokenService.signOut();
     this.router.navigate(['/'])
+  }
+
+  getNotifications(){
+    this.notificationService.getNotificationByUserId(this.tokenService.getUser().id).subscribe(notifications => {
+      NavBarComponent.notifications = notifications;
+      for(let i =0; i< NavBarComponent.notifications.length; i++){
+        NavBarComponent.isNofification = !NavBarComponent.notifications[i].isRead;
+      }
+    });
+
   }
 
 

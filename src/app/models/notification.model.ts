@@ -1,10 +1,20 @@
 export class Notification{
   constructor(
+    private _id: number,
     private _userId: number,
     private _message: string,
     private _isRead: boolean,
 
   ) {}
+
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
 
   get userId(): number {
     return this._userId;

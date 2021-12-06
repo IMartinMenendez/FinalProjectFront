@@ -13,10 +13,13 @@ import {
 import {UserService} from "../../services/user.service";
 import {CourseService} from "../../services/course.service";
 import {User} from "../../models/user.model";
-import {Observable, Subscription} from "rxjs";
-import {filter, map, pairwise} from "rxjs/operators";
+import {Notification} from "../../models/notification.model";
 import {AuthSessionService} from "../../services/auth-session.service";
 import {TokenStorageService} from "../../services/token.service";
+import {NotificationService} from "../../services/notification.service";
+import {ScopeData} from "@angular/compiler-cli/src/ngtsc/scope";
+import {EmitScope} from "@angular/compiler-cli/linker/src/file_linker/emit_scopes/emit_scope";
+import {NavBarComponent} from "../../main/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-home',
@@ -31,13 +34,12 @@ export class HomeComponent implements OnInit {
   user!: User;
   date: string;
   attendeeEvents: Meeting[] = [];
-  attendeeEventsId: number[] = [];
   eventList: Meeting[] = [];
   comingSoon: Meeting[] = [];
   courses: Course[] = [];
   modalOpen: boolean = false;
 
-  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService) {
+  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService, private notificationService: NotificationService) {
     this.date = new Date().toLocaleDateString("en-US", {
       weekday: 'long',
       year: 'numeric',
@@ -58,6 +60,8 @@ export class HomeComponent implements OnInit {
     } else {
       this.welcomeMessage = "Welcome back"
     }
+
+    this.getNotifications();
 
     this.eventService.getEventsByAttendee(this.tokenService.getUser().id).subscribe(event => {
       this.attendeeEvents = event;
@@ -84,6 +88,15 @@ export class HomeComponent implements OnInit {
     this.authSessionService.logout();
     this.tokenService.signOut();
     this.router.navigate(['/'])
+  }
+
+  getNotifications(){
+    this.notificationService.getNotificationByUserId(this.tokenService.getUser().id).subscribe(notifications => {
+      NavBarComponent.notifications = notifications;
+      for(let i =0; i< NavBarComponent.notifications.length; i++){
+        NavBarComponent.isNofification = !NavBarComponent.notifications[i].isRead;
+      }
+    });
   }
 
 }
