@@ -1,12 +1,21 @@
 <div class="center">
+  <h1 class="text date">What are you looking for?</h1>
   <div class="container">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search Event" aria-describedby="basic-addon2">
-      <span class="input-group-text btn-primary" id="basic-addon2"><i class="fa fa-search"></i></span>
-    </div>
+    <form>
+      <div class="form">
+        <div class="list-group">
+          <label><h3 class="color-text">Type of Event</h3></label>
+          <input type="text" class="form-control" name="type" [(ngModel)]="type" placeholder="ONG">
+        </div>
+        <div class="list-group">
+          <label><h3 class="color-text">Location</h3></label>
+          <input type="text" class="form-control" name="location" [(ngModel)]="place" placeholder="Madrid">
+        </div>
+      </div>
+    </form>
   </div>
   <div class="grid">
-    <div class="card" style="width: 50rem;" *ngFor="let meeting of allEvents">
+    <div class="card" style="width: 50rem;" *ngFor="let meeting of page">
       <img src="{{meeting.picture}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{meeting.title}}</h5>
@@ -27,16 +36,12 @@
   <div class="center-display">
     <nav aria-label="...">
       <ul class="pagination">
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active" aria-current="page">
-          <span class="page-link">2</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <button (click)="previous()" class="page-link" [disabled]="pagination == 0" >Previous</button>
+        </li>
+        <li><button *ngFor="let numberPage of numberPages; let index" [ngClass]="pagination == index ? 'active' : ''" (click)="goToPage(index)"  class="page-link" >{{index +1}}</button></li>
+        <li class="page-item">
+          <button (click)="next()" class="page-link" [disabled]="pagination >= maxPages-1" >Next</button>
         </li>
       </ul>
     </nav>

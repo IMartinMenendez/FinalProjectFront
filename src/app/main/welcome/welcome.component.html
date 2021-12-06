@@ -39,17 +39,17 @@
   <form>
     <div class="form">
       <div class="list-group">
-        <label for="inputPassword2">Type of Event</label>
-        <input type="text" class="form-control" id="inputPassword" placeholder="ONG">
+        <label>Type of Event</label>
+        <input type="text" class="form-control" name="type" [(ngModel)]="eventType" placeholder="ONG">
       </div>
       <div class="list-group">
-        <label for="inputPassword2">Location</label>
-        <input type="text" class="form-control" id="inputPassword2" placeholder="Madrid">
+        <label>Location</label>
+        <input type="text" class="form-control" name="location" [(ngModel)]="eventLocation" placeholder="Madrid">
       </div>
     </div>
     <div class="center">
-      <button type="submit" style="margin-top: 30px" class="btn btn-primary btn-lg button"
-              [routerLink]="['/all-events']">Find Events!
+      <button type="submit" style="margin-top: 30px; background-color: #008294; padding: 10px" class="btn btn-primary btn-lg button"
+           (click)="goToAllEvents()">Find Events!
       </button>
     </div>
   </form>

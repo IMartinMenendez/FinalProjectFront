@@ -20,9 +20,19 @@ export class WelcomeComponent implements OnInit {
   courseList!: Course[];
   end: number = 3;
   modalOpen: boolean = false;
+  today: string;
+  eventType!: string;
+  eventLocation!: string;
 
   constructor(private eventService: EventService, private courseService: CourseService, private tokenService: TokenStorageService, private router: Router) {
-
+    let date = new Date();
+    this.today = date.getUTCFullYear()         + '-' +
+      this.pad(date.getUTCMonth() + 1)  + '-' +
+      this.pad(date.getUTCDate())       + ' ' +
+      this.pad(date.getUTCHours())      + ':' +
+      this.pad(date.getUTCMinutes())    + ':' +
+      this.pad(date.getUTCSeconds());
+    console.log(this.today);
   }
 
   ngOnInit(): void {
@@ -32,14 +42,17 @@ export class WelcomeComponent implements OnInit {
     })
     this.courseService.getCourse().subscribe( course => {
       this.courseList = course;
-      console.log(course);
     })
   }
 
   createCarousel(){
-    this.firstPage = this.eventList.slice(0, 3);
-    this.secondPage = this.eventList.slice(2, 5);
-    this.thirdPage = this.eventList.slice(5, 8);
+    this.eventService.getEventComingSoon(this.today).subscribe(events => {
+      console.log(this.today);
+      this.firstPage = events.slice(0, 3);
+      this.secondPage = events.slice(3, 6);
+      this.thirdPage = events.slice(6, 9);
+    })
+
   }
 
   seeMore(){
@@ -59,5 +72,22 @@ joinMeeting(meetingId: number) {
     })
   }
 }
+
+goToAllEvents(){
+    if(this.eventType && !this.eventLocation){
+      this.router.navigate(['/all-events'],
+      { queryParams: { type: this.eventType } });
+    }else if(this.eventLocation && !this.eventType){
+    this.router.navigate(['/all-events'],
+      { queryParams: { place: this.eventLocation } });
+  }  else if(this.eventLocation && this.eventType){
+      this.router.navigate(['/all-events'],
+        { queryParams: { type: this.eventType , place: this.eventLocation} });
+    }else {
+      this.router.navigate(['/all-events']);
+    }
+}
+
+  pad(num: number) { return ('00'+num).slice(-2) };
 
 }

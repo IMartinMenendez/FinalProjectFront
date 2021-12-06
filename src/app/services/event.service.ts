@@ -39,6 +39,15 @@ export class EventService {
     return this.http.get<Meeting[]>(this.baseUrl + '/Event/Attendees/' + attendeeId, {headers: {'X-Auth-Token': this.tokenService.getToken() || ''}})
   }
 
+  getEventComingSoon(date: string) : Observable<Meeting[]>{
+    return this.http.get<Meeting[]>(this.baseUrl + '/ComingSoon/' + date);
+
+  }
+
+  getEventFilterBy(type?: string | null, place?: string | null)  : Observable<Meeting[]>{
+    return this.http.get<Meeting[]>(this.baseUrl + '/EventFilter?type=' + type + "&place=" + place);
+  }
+
   deleteEvent(id: number): Observable<Meeting> {
     return this.http.delete<Meeting>(this.baseUrl + '/Event/' + id);
   }

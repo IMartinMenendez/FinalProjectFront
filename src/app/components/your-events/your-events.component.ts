@@ -6,6 +6,7 @@ import {CourseService} from "../../services/course.service";
 import {Course} from "../../models/course.model";
 import {AuthSessionService} from "../../services/auth-session.service";
 import {TokenStorageService} from "../../services/token.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-your-events',
@@ -20,8 +21,10 @@ export class YourEventsComponent implements OnInit {
   userId: number;
   modalOpen: boolean = false;
   EventId!: number;
+  userName: string;
 
   constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService, private router: Router) {
+    this.userName = tokenService.getUser().name;
     this.userId = this.activatedRoute.snapshot.params['userId'];
     this.date = new Date().toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }

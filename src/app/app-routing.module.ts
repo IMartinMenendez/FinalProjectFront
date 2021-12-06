@@ -53,6 +53,14 @@ const routes: Routes = [
     path: 'all-events',
     component: AllEventsComponent,
   },
+  {
+    path: 'all-events/:type',
+    component: AllEventsComponent,
+  },
+  {
+    path: 'all-events/:type/:place',
+    component: AllEventsComponent,
+  },
   // {
   //   path: '**',
   //   component: PagenotfoundComponent,

@@ -30,8 +30,11 @@
 }
 
 .carousel-control-next, .carousel-control-prev {
-  width: 8%;
-  background-color: #2CADAD;
+  background-color: #008294;
+  border-radius: 50%;
+  height: 14%;
+  width: 3%;
+  top: 34%;
 }
 
 button{

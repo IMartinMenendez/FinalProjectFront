@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {EventService} from "../../services/event.service";
 import {Meeting} from "../../models/meeting.model";
 import {TokenStorageService} from "../../services/token.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-all-events',
@@ -13,17 +14,37 @@ export class AllEventsComponent implements OnInit {
 
   allEvents: Meeting[] = [];
   modalOpen: boolean = false;
+  totalPages: number = 0;
+  numberPages: number[] = [];
+  page: Meeting[] = [];
+  pagination: number = 0;
+  maxPages: number = 6;
+  type!: string | null;
+  place!: string | null;
 
-  constructor(private eventService: EventService, private tokenService: TokenStorageService, private router: Router) {
+  constructor(private eventService: EventService, private tokenService: TokenStorageService, private router: Router,  private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    // if(!this.tokenService.getToken()){
-    //   this.router.navigate(['/register'])
-    // }
-    this.eventService.getAllEvents().subscribe(event => {
-      this.allEvents = event;
-    })
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.type = params['type'];
+      this.place = params['place']
+    });
+
+    if(this.type || this.place){
+      this.eventService.getEventFilterBy(this.type, this.place).subscribe(events => {
+        this.allEvents = events;
+        this.paginationCalculation();
+        this.calculateMaxPages();
+      })
+    } else {
+      this.eventService.getAllEvents().subscribe(events => {
+        this.allEvents = events;
+        this.paginationCalculation();
+        this.calculateMaxPages();
+      })
+    }
+
   }
 
   joinMeeting(meetingId: number){
@@ -34,6 +55,34 @@ export class AllEventsComponent implements OnInit {
         this.modalOpen = true;
       })
     }
+  }
+
+
+  paginationCalculation(){
+    this.page = this.allEvents.slice(this.pagination *6, (this.pagination * 6)+6)
+  }
+
+  calculateMaxPages(){
+    this.numberPages = [];
+    this.maxPages = this.allEvents.length/6;
+    for(let i = 0; i< this.maxPages; i++){
+      this.numberPages.push(i);
+    }
+  }
+
+  next(){
+    this.pagination = this.pagination +1;
+    this.paginationCalculation();
+  }
+
+  previous(){
+    this.pagination = this.pagination -1;
+    this.paginationCalculation();
+  }
+
+  goToPage(event: number){
+    this.pagination = event;
+    this.paginationCalculation();
   }
 
 }
