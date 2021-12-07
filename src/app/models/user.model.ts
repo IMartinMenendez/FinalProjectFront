@@ -1,7 +1,7 @@
 export class User{
   constructor(
     // private _eventId: number[],
-    private _id: string,
+    private _id: number,
     private _name: string,
     private _email: string,
     private _role: string,
@@ -14,12 +14,11 @@ export class User{
   //   return this._eventId;
   // }
 
-
-  get id(): string {
+  get id(): number {
     return this._id;
   }
 
-  set id(value: string) {
+  set id(value: number) {
     this._id = value;
   }
 

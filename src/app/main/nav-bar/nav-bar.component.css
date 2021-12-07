@@ -17,3 +17,8 @@
   right: 12px;
   top: -13px;
 }
+
+.dropdown-menu.show{
+  top: 156%!important;
+  left: -327px!important;
+}

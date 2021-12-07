@@ -23,6 +23,7 @@ export class WelcomeComponent implements OnInit {
   today: string;
   eventType!: string;
   eventLocation!: string;
+  message: string = "";
 
   constructor(private eventService: EventService, private courseService: CourseService, private tokenService: TokenStorageService, private router: Router) {
     let date = new Date();
@@ -32,7 +33,6 @@ export class WelcomeComponent implements OnInit {
       this.pad(date.getUTCHours())      + ':' +
       this.pad(date.getUTCMinutes())    + ':' +
       this.pad(date.getUTCSeconds());
-    console.log(this.today);
   }
 
   ngOnInit(): void {
@@ -47,7 +47,6 @@ export class WelcomeComponent implements OnInit {
 
   createCarousel(){
     this.eventService.getEventComingSoon(this.today).subscribe(events => {
-      console.log(this.today);
       this.firstPage = events.slice(0, 3);
       this.secondPage = events.slice(3, 6);
       this.thirdPage = events.slice(6, 9);
@@ -59,17 +58,15 @@ export class WelcomeComponent implements OnInit {
     this.end = this.end +3;
   }
 
-  goToLink(url: string){
-    window.open(url, "_blank");
-  }
-
 joinMeeting(meetingId: number) {
   if (!this.tokenService.getToken()) {
     this.router.navigate(['/login'])
   } else if (this.tokenService.getUser()) {
     this.eventService.addAttendee(meetingId, this.tokenService.getUser().id).subscribe(answer => {
       this.modalOpen = true;
-    })
+      this.message = "You successfully join to this event!"
+    },
+      error => this.message = "You are already enrolled in this course!")
   }
 }
 

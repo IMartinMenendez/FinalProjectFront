@@ -20,6 +20,8 @@ import { YourEventsComponent } from './components/your-events/your-events.compon
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { NewCourseComponent } from './components/new-course/new-course.component';
 import { AllEventsComponent } from './components/all-events/all-events.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { CourseComponent } from './components/course/course.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { AllEventsComponent } from './components/all-events/all-events.component
     NewEventComponent,
     NewCourseComponent,
     AllEventsComponent,
+    ModalComponent,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,

@@ -144,27 +144,13 @@
       <div class="card-body">
         <h5 class="card-title">{{course.title}}</h5>
         <p class="card-text">{{course.description}}</p>
-        <a (click)="goToLink(course.link)">See this course</a>
+        <button [routerLink]="['/course', course.id]" class="btn btn-success btn-lg button">See this course</button>
       </div>
     </div>
   </div>
   <div class="center">
     <button type="button" (click)="seeMore()" class="btn btn-success btn-lg button">See more!</button>
   </div>
-
 </section>
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Congrats! You successfully joined to this event!</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" (click)="modalOpen = false" class="btn btn-secondary" data-bs-dismiss="modal">Close
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+<app-modal [messageProperty]="message"></app-modal>

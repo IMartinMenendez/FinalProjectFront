@@ -16,7 +16,7 @@ import {Course} from "../../models/course.model";
 export class NewCourseComponent implements OnInit {
 
   userId!: number;
-  course: Course = new Course(1, "ONG",'Help kids!', "Help kids in Madrid",   "https://www.todaysparent.com/wp-content/uploads/2018/09/ways-to-help-kids-with-autism-have-great-playdates-1280x960.jpg");
+  course: Course = new Course(1,this.userId, "ONG",'Help kids!', "Help kids in Madrid",   "https://www.todaysparent.com/wp-content/uploads/2018/09/ways-to-help-kids-with-autism-have-great-playdates-1280x960.jpg");
 
   userName!: string;
 

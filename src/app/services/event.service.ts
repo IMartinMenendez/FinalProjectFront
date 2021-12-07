@@ -52,7 +52,7 @@ export class EventService {
     return this.http.delete<Meeting>(this.baseUrl + '/Event/' + id);
   }
 
-  updateEvent(id: number, event: Event): Observable<Meeting> {
+  updateEvent(id: number, event: Meeting): Observable<Meeting> {
     return this.http.put<Meeting>(this.baseUrl + '/Event/' + id, event);
   }
 

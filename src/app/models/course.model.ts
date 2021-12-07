@@ -1,5 +1,6 @@
 export class Course{
   constructor(
+    private _id: number,
     private _creatorId: number,
     private _title: string,
     private _description: string,
@@ -8,6 +9,13 @@ export class Course{
 
   ) {}
 
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
 
   get creatorId(): number {
     return this._creatorId;

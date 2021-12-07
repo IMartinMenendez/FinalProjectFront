@@ -1,0 +1,11 @@
+<div class="body">
+  <div class="event">
+    <h1 >{{course.title}}</h1>
+    <iframe width="760" height="515" [src]="safeURL" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h3 >Details:</h3>
+    <h4>{{course.description}}</h4>
+    <button (click)="goToLink(course.link)" data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn btn-warning courseButton">See this course!</button>
+  </div>
+</div>
+
+<app-modal [messageProperty]="message"></app-modal>

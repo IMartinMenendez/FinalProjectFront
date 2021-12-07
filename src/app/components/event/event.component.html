@@ -1,15 +1,22 @@
-
-<div class="header">
-  <h3>{{meeting.date | date: 'dd-MMMM-yyyy'}}</h3>
-  <h1>{{meeting.title}}</h1>
-  <h4>{{creator.name}}</h4>
-
-</div>
 <div class="body">
+<div class="event">
+  <h3 >{{meeting.date | date: 'dd-MMMM-yyyy'}}</h3>
+  <input *ngIf="edit" type="date" class="form-control" name="date" [(ngModel)]="meeting.date">
+  <h1 >{{meeting.title}}</h1>
+  <input *ngIf="edit" type="text" class="form-control" name="title" [(ngModel)]="meeting.title">
+  <h4 >{{creator.name}}</h4>
+
   <img src="{{meeting.picture}}">
-  <h3>Details:</h3>
+  <input *ngIf="edit" type="text" class="form-control" name="picture" [(ngModel)]="meeting.picture">
+  <h3 >Details:</h3>
   <h4>{{meeting.description}}</h4>
+  <input *ngIf="edit" type="text" class="form-control" name="description" [(ngModel)]="meeting.description">
   <h3>Attendees:</h3>
   <h4>{{meeting.attendees}}</h4>
-  <button type="button" (click)="join(meeting.id, 1)" class="btn btn-warning">Join!</button>
+  <button type="button"  *ngIf="!edit" (click)="join(meeting.id)" data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn btn-warning">Join!</button>
+  <button type="button" *ngIf="checkCreator()" (click)="editMeeting()" class="btn button">Edit</button>
+  <button type="button" *ngIf="meeting.creator === creator.id && edit" (click)="saveMeeting(meeting.id)" style="background-color: #008294; " data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn button">Save</button>
 </div>
+</div>
+
+<app-modal [messageProperty]="message"></app-modal>

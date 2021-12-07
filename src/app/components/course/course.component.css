@@ -44,3 +44,11 @@ input{
   background-color: #008294;
   color: white;
 }
+
+.courseButton{
+  display: block;
+  justify-content: center;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}

@@ -11,6 +11,8 @@ import {YourEventsComponent} from "./components/your-events/your-events.componen
 import {NewEventComponent} from "./components/new-event/new-event.component";
 import {NewCourseComponent} from "./components/new-course/new-course.component";
 import {AllEventsComponent} from "./components/all-events/all-events.component";
+import {Course} from "./models/course.model";
+import {CourseComponent} from "./components/course/course.component";
 
 const routes: Routes = [
   {
@@ -48,6 +50,10 @@ const routes: Routes = [
   {
     path: 'event/:postId',
     component: EventComponent,
+  },
+  {
+    path: 'course/:postId',
+    component: CourseComponent,
   },
   {
     path: 'all-events',

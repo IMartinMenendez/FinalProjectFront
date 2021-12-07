@@ -16,7 +16,7 @@ import {CreateMeetingModel} from "../../models/createMeeting.model";
 export class NewEventComponent implements OnInit {
 
   userId!: number;
-  event: CreateMeetingModel = new CreateMeetingModel( "ONG", new Date(1,12,2020), 'Madrid', 'Help kids!', "Help kids in Madrid", this.userId, [], "https://www.todaysparent.com/wp-content/uploads/2018/09/ways-to-help-kids-with-autism-have-great-playdates-1280x960.jpg");
+  event: CreateMeetingModel = new CreateMeetingModel(  "ONG", new Date(1,12,2020), 'Madrid', 'Help kids!', "Help kids in Madrid", this.userId, [], "https://www.todaysparent.com/wp-content/uploads/2018/09/ways-to-help-kids-with-autism-have-great-playdates-1280x960.jpg");
 
   userName!: string;
 

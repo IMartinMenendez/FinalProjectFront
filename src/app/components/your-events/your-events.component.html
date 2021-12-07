@@ -60,7 +60,7 @@
       <img src="{{course.picture}}" class="card-img-top" alt="...">
       <div class="card-body" >
         <p class="card-text">{{course.description}}</p>
-        <a (click)="goToLink(course.link)">See this course</a>
+        <button [routerLink]="['/course', course.id]" class="btn btn-success btn-lg button">See this course</button>
       </div>
     </div>
   </div>
