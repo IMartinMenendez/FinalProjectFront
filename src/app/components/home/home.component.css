@@ -105,3 +105,12 @@ font {
   size: 20vw;
   family: 'Poppins', sans-serif;
 }
+
+.buttons-group{
+  justify-content: space-between;
+
+}
+
+.margin-left{
+  margin-left: 10px;
+}

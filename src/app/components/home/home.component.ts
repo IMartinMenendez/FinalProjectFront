@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
   comingSoon: Meeting[] = [];
   courses: Course[] = [];
   modalOpen: boolean = false;
+  today: string;
+  eventsForToday: Meeting[] = [];
 
   constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService, private courseService: CourseService, private authSessionService: AuthSessionService, private tokenService: TokenStorageService, private notificationService: NotificationService) {
     this.date = new Date().toLocaleDateString("en-US", {
@@ -46,6 +48,14 @@ export class HomeComponent implements OnInit {
       month: 'long',
       day: 'numeric'
     });
+
+    let date = new Date();
+    this.today = date.getUTCFullYear()         + '-' +
+      this.pad(date.getUTCMonth() + 1)  + '-' +
+      this.pad(date.getUTCDate())       + ' ' +
+      this.pad(date.getUTCHours())      + ':' +
+      this.pad(date.getUTCMinutes())    + ':' +
+      this.pad(date.getUTCSeconds());
   }
 
   ngOnInit(): void {
@@ -65,6 +75,10 @@ export class HomeComponent implements OnInit {
 
     this.eventService.getEventsByAttendee(this.tokenService.getUser().id).subscribe(event => {
       this.attendeeEvents = event;
+    })
+
+    this.eventService.getEventByDate(this.today, this.tokenService.getUser().id).subscribe(events => {
+      this.eventsForToday = events;
     })
 
     this.courseService.getCourseByUserId(this.tokenService.getUser().id).subscribe(courses => {
@@ -98,5 +112,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+pad(num: number) { return ('00'+num).slice(-2) };
 
 }

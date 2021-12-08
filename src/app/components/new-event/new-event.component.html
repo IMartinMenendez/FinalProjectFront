@@ -1,11 +1,10 @@
 <div class="grid">
   <div class="sidebar">
-    <a routerLink="/">Home</a>
     <a routerLink="/home">Your Profile</a>
     <a routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
     <a class="active" routerLink="/new-events/{{userId}}">Create a new event</a>
     <a routerLink="/new-course/{{userId}}">Create a new course</a>
-    <button (click)="logout()">Log Out</button>
+    <button class="btn btn-success" (click)="logout()">Log Out</button>
   </div>
     <form >
       <h1 class="title" style="color: #008294;">Your New Event Details</h1>

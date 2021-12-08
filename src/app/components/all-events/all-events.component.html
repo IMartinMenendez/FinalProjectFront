@@ -12,23 +12,29 @@
           <input type="text" class="form-control" name="location" [(ngModel)]="place" placeholder="Madrid">
         </div>
       </div>
+      <div class="center">
+        <button type="submit" style="margin-top: 30px; background-color: #008294; padding: 10px" class="btn btn-primary btn-lg button"
+                (click)="filter()">Find Events!
+        </button>
+      </div>
     </form>
   </div>
   <div class="grid">
     <div class="card" style="width: 50rem;" *ngFor="let meeting of page">
       <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-      <div class="card-body">
+      <div class="card-body container center" style="width: 80%">
         <h5 class="card-title">{{meeting.title}}</h5>
         <div class="group">
-          <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-          <h5 class="card-title"> | {{meeting.place}}</h5>
+          <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+          <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
         </div>
-        <div>
-          <p class="card-text">{{meeting.description}}</p>
-        </div>
+        <p class="card-text">{{meeting.description | slice:0:30}}</p>
         <div class="center">
-          <a href="#" class="btn btn-primary btn-lg button" [routerLink]="['/event', meeting.id]">See Event</a>
-          <button type="button" (click)="joinMeeting(meeting.id)"  data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!</button>
+          <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
+            Event</a>
+          <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
+                  data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
+          </button>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import {TokenStorageService} from "../../services/token.service";
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
+  styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
 
@@ -18,6 +18,8 @@ export class EventComponent implements OnInit {
   modalOpen: boolean = false;
   message: string = "";
   edit: boolean = false;
+  attendees: User[] = [];
+  similarEvents!: Meeting[];
 
   constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService, private tokenService: TokenStorageService) {
 
@@ -29,6 +31,8 @@ export class EventComponent implements OnInit {
     this.eventService.getEventById(postId).subscribe(
       event => {
         this.meeting = event;
+        this.getAllAttendees();
+        this.filter();
         this.userService.getUserById(this.meeting.creator).subscribe(
           user => {
             this.creator = user;
@@ -71,4 +75,20 @@ export class EventComponent implements OnInit {
     })
   }
 
+  getAllAttendees(){
+    if( this.meeting.attendees.length > 0){
+      for(let i=0; i < this.meeting.attendees.length; i++){
+        this.userService.getUserById(this.meeting.attendees[i]).subscribe(attendee => {
+          this.attendees.push(attendee);
+        })
+      }
+    }
+  }
+
+  filter(){
+      this.eventService.getEventFilterBy(undefined, this.meeting.place).subscribe(events => {
+        this.similarEvents = events.filter(event => event.id != this.meeting.id);
+        this.similarEvents = this.similarEvents.slice(0, 4);
+      })
+    }
 }

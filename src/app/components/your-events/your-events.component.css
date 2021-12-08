@@ -105,3 +105,7 @@ font {
   size: 20vw;
   family: 'Poppins', sans-serif;
 }
+
+.margin-left{
+  margin-left: 10px;
+}

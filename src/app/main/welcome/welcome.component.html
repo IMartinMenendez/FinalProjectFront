@@ -48,9 +48,9 @@
       </div>
     </div>
     <div class="center">
-      <button type="submit" style="margin-top: 30px; background-color: #008294; padding: 10px" class="btn btn-primary btn-lg button"
+      <a type="submit" style="margin-top: 30px; background-color: #008294; padding: 10px" class="btn btn-primary btn-lg button"
            (click)="goToAllEvents()">Find Events!
-      </button>
+      </a>
     </div>
   </form>
 </div>
@@ -61,15 +61,15 @@
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
           <div class="card-group">
-            <div class="card" style="width: 46rem;" *ngFor="let meeting of firstPage">
+            <div class="card" style="width: 46rem;" *ngFor="let meeting of thirdPage">
               <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-              <div class="card-body">
+              <div class="card-body container center" style="width: 80%">
                 <h5 class="card-title">{{meeting.title}}</h5>
                 <div class="group">
-                  <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-                  <h5 class="card-title"> | {{meeting.place}}</h5>
+                  <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+                  <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
                 </div>
-                <p class="card-text">{{meeting.description}}</p>
+                <p class="card-text">{{meeting.description | slice:0:30}}</p>
                 <div class="center">
                   <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
                     Event</a>
@@ -91,7 +91,7 @@
                   <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
                   <h5 class="card-title"> | {{meeting.place}}</h5>
                 </div>
-                <p class="card-text">{{meeting.description}}</p>
+                <p class="card-text">{{meeting.description | slice:0:30}}</p>
                 <div class="center">
                   <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
                     Event</a>
@@ -107,13 +107,13 @@
           <div class="card-group">
             <div class="card" style="width: 46rem;" *ngFor="let meeting of thirdPage">
               <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-              <div class="card-body">
+              <div class="card-body container center" style="width: 80%">
                 <h5 class="card-title">{{meeting.title}}</h5>
                 <div class="group">
-                  <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-                  <h5 class="card-title"> | {{meeting.place}}</h5>
+                  <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
+                  <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
                 </div>
-                <p class="card-text">{{meeting.description}}</p>
+                <p class="card-text">{{meeting.description | slice:0:30}}</p>
                 <div class="center">
                   <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
                     Event</a>
@@ -139,17 +139,17 @@
 
   <h1 class="text date">Courses to start now!</h1>
   <div class="grid-list">
-    <div class="card" *ngFor="let course of courseList | slice:0: end;">
+    <div class="card" style="margin-top: 10px" *ngFor="let course of courseList | slice:0: end;">
       <img src="{{course.picture}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{course.title}}</h5>
         <p class="card-text">{{course.description}}</p>
-        <button [routerLink]="['/course', course.id]" class="btn btn-success btn-lg button">See this course</button>
+        <a [routerLink]="['/course', course.id]"  type="button" class="btn btn-success btn-lg button">See this course</a>
       </div>
     </div>
   </div>
   <div class="center">
-    <button type="button" (click)="seeMore()" class="btn btn-success btn-lg button">See more!</button>
+    <a type="button" (click)="seeMore()" class="btn btn-success btn-lg button">See more!</a>
   </div>
 </section>
 

@@ -7,6 +7,8 @@ import {HttpParams} from "@angular/common/http";
 import {NavBarComponent} from "../../main/nav-bar/nav-bar.component";
 import {NotificationService} from "../../services/notification.service";
 import {Notification} from "../../models/notification.model";
+import {UserService} from "../../services/user.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-all-events',
@@ -22,8 +24,8 @@ export class AllEventsComponent implements OnInit {
   page: Meeting[] = [];
   pagination: number = 0;
   maxPages: number = 6;
-  type!: string | null;
-  place!: string | null;
+  type?: string;
+  place?: string;
 
   constructor(private eventService: EventService, private tokenService: TokenStorageService, private router: Router,  private activatedRoute: ActivatedRoute) {
   }
@@ -33,20 +35,7 @@ export class AllEventsComponent implements OnInit {
       this.type = params['type'];
       this.place = params['place']
     });
-
-    if(this.type || this.place){
-      this.eventService.getEventFilterBy(this.type, this.place).subscribe(events => {
-        this.allEvents = events;
-        this.paginationCalculation();
-        this.calculateMaxPages();
-      })
-    } else {
-      this.eventService.getAllEvents().subscribe(events => {
-        this.allEvents = events;
-        this.paginationCalculation();
-        this.calculateMaxPages();
-      })
-    }
+   this.filter();
 
   }
 
@@ -87,5 +76,29 @@ export class AllEventsComponent implements OnInit {
     this.pagination = event;
     this.paginationCalculation();
   }
+
+  filter(){
+    if(this.type || this.place){
+      if(this.type === ""){
+        delete this.type;
+      }
+      if(this.place === ""){
+        delete this.place;
+      }
+      this.eventService.getEventFilterBy(this.type, this.place).subscribe(events => {
+        this.allEvents = events;
+        this.paginationCalculation();
+        this.calculateMaxPages();
+      })
+    } else {
+      this.eventService.getAllEvents().subscribe(events => {
+        this.allEvents = events;
+        this.paginationCalculation();
+        this.calculateMaxPages();
+      })
+    }
+  }
+
+
 
 }

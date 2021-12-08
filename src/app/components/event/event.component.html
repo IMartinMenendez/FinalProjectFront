@@ -1,22 +1,53 @@
-<div class="body">
-<div class="event">
-  <h3 >{{meeting.date | date: 'dd-MMMM-yyyy'}}</h3>
-  <input *ngIf="edit" type="date" class="form-control" name="date" [(ngModel)]="meeting.date">
-  <h1 >{{meeting.title}}</h1>
-  <input *ngIf="edit" type="text" class="form-control" name="title" [(ngModel)]="meeting.title">
-  <h4 >{{creator.name}}</h4>
 
-  <img src="{{meeting.picture}}">
-  <input *ngIf="edit" type="text" class="form-control" name="picture" [(ngModel)]="meeting.picture">
-  <h3 >Details:</h3>
-  <h4>{{meeting.description}}</h4>
-  <input *ngIf="edit" type="text" class="form-control" name="description" [(ngModel)]="meeting.description">
-  <h3>Attendees:</h3>
-  <h4>{{meeting.attendees}}</h4>
-  <button type="button"  *ngIf="!edit" (click)="join(meeting.id)" data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn btn-warning">Join!</button>
+  <div class="event">
+  <h3>{{meeting.date | date: 'dd-MMMM-yyyy'}}</h3>
+  <input *ngIf="edit" type="date" class="form-control" name="date" [(ngModel)]="meeting.date">
+  <h1>{{meeting.title}}</h1>
+  <input *ngIf="edit" type="text" class="form-control" name="title" [(ngModel)]="meeting.title">
+  <h4>{{creator.name}}</h4>
+    <img src="{{meeting.picture}}">
+    <input *ngIf="edit" type="text" class="form-control" name="picture" [(ngModel)]="meeting.picture">
+    <div class="container" >
+      <h3>Details:</h3>
+      <h4>{{meeting.description}}</h4>
+    </div>
+    <input *ngIf="edit" type="text" class="form-control" name="description" [(ngModel)]="meeting.description">
+    <h3>Attendees: {{meeting.attendees.length}}</h3>
+    <div class="container" style="display: inline-flex">
+      <div *ngFor="let attendee of attendees" class="atendee-details margin-left">
+      <div class="avatar" >
+        <ngx-avatar size="90" name="{{attendee.name}}"></ngx-avatar>
+      </div>
+        <h3>{{attendee.name}}</h3>
+      </div>
+    </div>
+
+  <div class="container">
+    <h1 class="text date">Similar Events Near</h1>
+    <div *ngIf="similarEvents.length === 0" class="alert alert-success" role="alert">
+      No Events found!
+    </div>
+    <div style=" display: flex;">
+      <div *ngFor="let event of similarEvents" class="other-events margin-left card">
+      <span>
+        <img style="width: 80%" src="{{event.picture}}">
+      </span>
+        <p>{{event.title}}</p>
+        <p>{{event.date | date: 'dd-MMMM-yyyy'}}</p>
+        <a class="btn btn-primary" [routerLink]="['/event', event.id]">See Event</a>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" *ngIf="!edit" (click)="join(meeting.id)" data-bs-target="#staticBackdrop"
+          data-bs-toggle="modal" class="btn btn-warning">Join!
+  </button>
   <button type="button" *ngIf="checkCreator()" (click)="editMeeting()" class="btn button">Edit</button>
-  <button type="button" *ngIf="meeting.creator === creator.id && edit" (click)="saveMeeting(meeting.id)" style="background-color: #008294; " data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn button">Save</button>
-</div>
-</div>
+  <button type="button" *ngIf="meeting.creator === creator.id && edit" (click)="saveMeeting(meeting.id)"
+          style="background-color: #008294; " data-bs-target="#staticBackdrop" data-bs-toggle="modal"
+          class="btn button">Save
+  </button>
+
+  </div>
 
 <app-modal [messageProperty]="message"></app-modal>

@@ -3,6 +3,7 @@ import {TokenStorageService} from "../../services/token.service";
 import {Router} from "@angular/router";
 import {NotificationService} from "../../services/notification.service";
 import {Notification} from "../../models/notification.model";
+import {AuthSessionService} from "../../services/auth-session.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,17 +14,18 @@ export class NavBarComponent implements OnInit {
 
   public static notifications: Notification[] = [];
   public static isNofification: boolean = false;
+  userId?: number;
 
-
-  constructor(private tokenService: TokenStorageService, private router: Router, private notificationService: NotificationService) { }
+  constructor(private tokenService: TokenStorageService, private router: Router, private notificationService: NotificationService, private authSessionService: AuthSessionService) { }
 
   ngOnInit(): void {
     this.getNotifications();
+    this.userId = this.tokenService.getUser().id
   }
 
   goToHome(){
     if(this.tokenService.getToken() && this.tokenService.getUser()){
-      return this.router.navigate(['/home/' + this.tokenService.getUser().id])
+      return this.router.navigate(['/home/' + this.userId])
     } else {
       return this.router.navigate(['/login'])
     }
@@ -41,7 +43,6 @@ export class NavBarComponent implements OnInit {
 
   notificationRead(id: number){
     this.notificationService.updateToReadNotification(id).subscribe(response => {
-      console.log(response);
       this.getNotifications();
     })
 
@@ -53,6 +54,13 @@ export class NavBarComponent implements OnInit {
 
   getArrayNofifications(){
     return NavBarComponent.notifications;
+  }
+
+  logout(){
+    this.authSessionService.logout();
+    this.tokenService.signOut();
+    this.router.navigate(['/login'])
+    delete this.userId;
   }
 
 }

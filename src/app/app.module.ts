@@ -22,6 +22,7 @@ import { NewCourseComponent } from './components/new-course/new-course.component
 import { AllEventsComponent } from './components/all-events/all-events.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CourseComponent } from './components/course/course.component';
+import {AvatarModule} from "ngx-avatar";
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CourseComponent } from './components/course/course.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
