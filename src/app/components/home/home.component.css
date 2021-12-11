@@ -9,11 +9,11 @@
   margin-bottom: 40px;
 }
 
-.grid{
+.grid-profile{
   display: inline-grid;
-  grid-template-columns: 24% 62%;
-  grid-gap: 100px;
-  margin-bottom: 30px;
+  grid-template-columns: 27rem 77rem;
+  grid-gap: 5rem;
+  text-align: center;
 }
 
 .card{
@@ -33,10 +33,14 @@
 }
 .grid{
   display: inline-grid;
-  grid-template-columns: 40% 100%;
+  grid-template-columns: 31% 100%;
   text-align: center;
 }
-
+.card-display{
+  display: inline-grid;
+  grid-template-columns: 50% 50%;
+  text-align: center;
+}
 body {
   margin: 0;
   font-family: "Lato", sans-serif;

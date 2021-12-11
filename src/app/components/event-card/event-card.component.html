@@ -1,0 +1,31 @@
+<div class="card">
+  <img src="{{meeting.picture}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{meeting.title}}</h5>
+    <div class="group">
+      <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}
+      </h5>
+      <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
+    </div>
+    <p class="card-text">{{meeting.description | slice:0:30}} ...</p>
+    <div class="center">
+      <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button margin-left">See
+        this
+        Event</a>
+      <button *ngIf="!isLoggedIn" type="button" (click)="joinMeeting(meeting.id)" class="btn btn-warning btn-lg button margin-left">
+        Join!
+      </button>
+      <button *ngIf="isLoggedIn && !userAttendee" type="button" (click)="joinMeeting(meeting.id)"
+              data-bs-target="#staticBackdrop"
+              data-bs-toggle="modal" class="btn btn-warning btn-lg button margin-left">Join!
+      </button>
+      <button *ngIf="userAttendee && isLoggedIn" type="button" (click)="unattend(meeting.id)"
+              data-bs-target="#staticBackdrop" data-bs-toggle="modal"
+              class="btn btn-danger btn-lg button margin-left">Unattend
+      </button>
+      <button *ngIf="meeting.creator === userId" type="button" (click)="confirmationDelete()"
+              data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn btn-danger btn-lg button margin-left">Delete
+      </button>
+    </div>
+  </div>
+</div>

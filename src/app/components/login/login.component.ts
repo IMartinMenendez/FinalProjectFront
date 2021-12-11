@@ -4,9 +4,6 @@ import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TokenStorageService} from "../../services/token.service";
 import {AuthSessionService} from "../../services/auth-session.service";
-import {of} from "rxjs";
-import {catchError} from "rxjs/operators";
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',

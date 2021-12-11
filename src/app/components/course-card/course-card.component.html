@@ -1,0 +1,8 @@
+<div class="card">
+  <img src="{{course.picture}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{course.title}}</h5>
+    <p class="card-text">{{course.description}}</p>
+    <a [routerLink]="['/course', course.id]" type="button" class="btn btn-success btn-lg button">See this course</a>
+  </div>
+</div>

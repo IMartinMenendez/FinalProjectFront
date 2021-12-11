@@ -18,8 +18,10 @@ export class EventComponent implements OnInit {
   modalOpen: boolean = false;
   message: string = "";
   edit: boolean = false;
+  userAttendee: boolean = false;
   attendees: User[] = [];
   similarEvents!: Meeting[];
+  eventId: number= 0;
 
   constructor(private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService, private tokenService: TokenStorageService) {
 
@@ -27,12 +29,17 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const postId: number = this.activatedRoute.snapshot.params['postId'];
-    this.eventService.getEventById(postId).subscribe(
+    this.eventId  = this.activatedRoute.snapshot.params['postId'];
+    this.getEventDetails();
+  }
+
+  getEventDetails(){
+    this.eventService.getEventById(this.eventId).subscribe(
       event => {
         this.meeting = event;
         this.getAllAttendees();
         this.filter();
+        this.userAttendeeCheck();
         this.userService.getUserById(this.meeting.creator).subscribe(
           user => {
             this.creator = user;
@@ -42,22 +49,34 @@ export class EventComponent implements OnInit {
     );
   }
 
+  userAttendeeCheck(){
+    this.eventService.getEventById(this.meeting.id).subscribe(response => {
+      this.meeting = response;
+      this.userAttendee = !!this.meeting.attendees.find(a => a === this.tokenService.getUser().id);
+    })
+
+  }
+
 
   join(meetingId: number) {
     if (!this.tokenService.getToken()) {
       this.router.navigate(['/login'])
     } else if (this.tokenService.getUser()) {
-      this.eventService.addAttendee(meetingId, this.tokenService.getUser().id).subscribe(answer => {
-        this.modalOpen = true;
-          this.message = "You successfully joined this event!"
-      },
-        error => this.message = "You are already enrolled in this course!")
+      if(!this.attendees.find(e => e === this.tokenService.getUser().id)){
+        this.eventService.addAttendee(meetingId, this.tokenService.getUser().id).subscribe(answer => {
+            this.modalOpen = true;
+            this.userAttendee = true;
+            this.getEventDetails();
+            this.message = "You successfully joined this event!"
+          },
+          error => this.message = "You are already enrolled in this course!")
+      } else {
+        this.message = "You are already enrolled in this course!"
+      }
     }
   }
 
   checkCreator(){
-    console.log(this.meeting.creator);
-    console.log(this.creator.id);
     if(this.meeting.creator === this.tokenService.getUser().id && !this.edit){
       return true;
     }
@@ -76,6 +95,7 @@ export class EventComponent implements OnInit {
   }
 
   getAllAttendees(){
+    this.attendees = [];
     if( this.meeting.attendees.length > 0){
       for(let i=0; i < this.meeting.attendees.length; i++){
         this.userService.getUserById(this.meeting.attendees[i]).subscribe(attendee => {
@@ -91,4 +111,24 @@ export class EventComponent implements OnInit {
         this.similarEvents = this.similarEvents.slice(0, 4);
       })
     }
+
+    goToThisEvent(event: Meeting){
+      this.eventService.getEventById(event.id).subscribe(
+        event => {
+          this.meeting = event;
+          this.getEventDetails();
+        }
+      );
+      window.scrollTo(0,  20);
+      this.router.navigate(['/event/' + event.id])
+    }
+
+  unattend(id: number){
+    this.eventService.removeAttendee(id, this.tokenService.getUser().id).subscribe(response => {
+      this.modalOpen = true;
+      this.userAttendee = false;
+      this.getEventDetails();
+      this.message = "You have unattended from this event";
+    })
+  }
 }

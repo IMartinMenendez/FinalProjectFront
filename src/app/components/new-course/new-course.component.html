@@ -1,11 +1,5 @@
 <div class="grid">
-  <div class="sidebar">
-    <a routerLink="/home">Your Profile</a>
-    <a routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
-    <a routerLink="/new-events/{{userId}}">Create a new event</a>
-    <a class="active" routerLink="/new-course/{{userId}}">Create a new course</a>
-    <button class="btn btn-success" (click)="logout()">Log Out</button>
-  </div>
+<app-lateral-menu></app-lateral-menu>
   <div>
     <h1 class="title"  style="color: #008294;">Your New Course Details</h1>
     <h1 class="date">Congratulations! You have decided to make a great impact in the world!</h1>

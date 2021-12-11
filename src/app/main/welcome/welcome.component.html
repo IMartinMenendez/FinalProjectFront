@@ -48,8 +48,9 @@
       </div>
     </div>
     <div class="center">
-      <a type="submit" style="margin-top: 30px; background-color: #008294; padding: 10px" class="btn btn-primary btn-lg button"
-           (click)="goToAllEvents()">Find Events!
+      <a type="submit" style="margin-top: 30px; background-color: #008294; padding: 10px"
+         class="btn btn-primary btn-lg button"
+         (click)="goToAllEvents()">Find Events!
       </a>
     </div>
   </form>
@@ -57,100 +58,48 @@
 <h1 class="text date" style="margin-top: 100px">Coming soon!</h1>
 <section class="carousel">
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-size">
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <div class="card-group">
-            <div class="card" style="width: 46rem;" *ngFor="let meeting of thirdPage">
-              <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-              <div class="card-body container center" style="width: 80%">
-                <h5 class="card-title">{{meeting.title}}</h5>
-                <div class="group">
-                  <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-                  <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
-                </div>
-                <p class="card-text">{{meeting.description | slice:0:30}}</p>
-                <div class="center">
-                  <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
-                    Event</a>
-                  <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
-                          data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <div class="card-group">
+          <app-event-card *ngFor="let event of firstPage" [event]="event"></app-event-card>
         </div>
-        <div class="carousel-item" data-bs-interval="10000">
-          <div class="card-group">
-            <div class="card" style="width: 46rem;" *ngFor="let meeting of secondPage">
-              <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{meeting.title}}</h5>
-                <div class="group">
-                  <h5 class="card-title">{{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-                  <h5 class="card-title"> | {{meeting.place}}</h5>
-                </div>
-                <p class="card-text">{{meeting.description | slice:0:30}}</p>
-                <div class="center">
-                  <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
-                    Event</a>
-                  <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
-                          data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <div class="card-group">
+          <app-event-card *ngFor="let event of secondPage" [event]="event"></app-event-card>
         </div>
-        <div class="carousel-item" data-bs-interval="10000">
-          <div class="card-group">
-            <div class="card" style="width: 46rem;" *ngFor="let meeting of thirdPage">
-              <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-              <div class="card-body container center" style="width: 80%">
-                <h5 class="card-title">{{meeting.title}}</h5>
-                <div class="group">
-                  <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-                  <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
-                </div>
-                <p class="card-text">{{meeting.description | slice:0:30}}</p>
-                <div class="center">
-                  <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
-                    Event</a>
-                  <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
-                          data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <div class="card-group">
+          <app-event-card *ngFor="let event of thirdPage" [event]="event"></app-event-card>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
-  <h1 class="text date">Courses to start now!</h1>
-  <div class="grid-list">
-    <div class="card" style="margin-top: 10px" *ngFor="let course of courseList | slice:0: end;">
-      <img src="{{course.picture}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{course.title}}</h5>
-        <p class="card-text">{{course.description}}</p>
-        <a [routerLink]="['/course', course.id]"  type="button" class="btn btn-success btn-lg button">See this course</a>
-      </div>
-    </div>
-  </div>
-  <div class="center">
-    <a type="button" (click)="seeMore()" class="btn btn-success btn-lg button">See more!</a>
-  </div>
 </section>
 
-<app-modal [messageProperty]="message"></app-modal>
+<h1 class="text date">Courses to start now!</h1>
+<div class="grid-list">
+  <div class="card" style="margin-top: 10px" *ngFor="let course of courseList | slice:0: end;">
+    <img src="{{course.picture}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{course.title}}</h5>
+      <p class="card-text">{{course.description}}</p>
+      <a [routerLink]="['/course', course.id]" type="button" class="btn btn-success btn-lg button">See this course</a>
+    </div>
+  </div>
+</div>
+<div class="center">
+  <a type="button" (click)="seeMore()" class="btn btn-success btn-lg button">See more!</a>
+</div>
+

@@ -1,0 +1,67 @@
+.title{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.card-display{
+  display: inline-grid;
+  grid-template-columns: 50% 50%;
+  text-align: center;
+}
+
+.card{
+  width: 22rem!important;
+}
+.date{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding-bottom: 0.75rem;
+  font-weight: 500;
+  border-bottom:1px solid black;
+}
+
+.empty-message{
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.grid-profile{
+  display: inline-grid;
+  grid-template-columns: 27rem 77rem;
+  grid-gap: 5rem;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+
+.text {
+  font-size: 80px;
+  background: linear-gradient(to right, #80ED99 0%, #3A6351 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+font {
+  size: 20vw;
+  family: 'Poppins', sans-serif;
+}
+
+.margin-left{
+  margin-left: 10px;
+}

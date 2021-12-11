@@ -1,73 +1,72 @@
-.header{
+.header {
   width: 80%;
   text-align: center;
   margin: auto;
 }
 
-
-img{
+img {
   width: 40%;
+  margin-bottom: 25px;
 }
 
-.event{
-  background-color: #e6e6e6;
+.event {
   text-align: center;
   margin: auto;
-  min-height: 75rem;
   padding-top: 10px;
   padding-bottom: 20px;
   width: 80%;
-  margin: auto auto;
-  position: relative;
   top: 62px;
-  min-height: 45rem;
 }
 
-/*.event:hover{*/
-/*  box-shadow: 0 8px 30px 0 rgba(0,0,0,0.2);*/
-/*}*/
-
-input{
+input {
   width: 60%;
   justify-content: center;
   margin: auto;
 }
 
-.button{
+.button {
   margin-left: 30px;
   background-color: #008294;
   color: white;
 }
 
-.atendee-details{
-  height: 10rem;
-  width: 7rem;
-  background-color: white;
-  padding: 10px;
-
-}
-
-.avatar{
-  justify-content: center!important;
-  margin: auto!important;
+.avatar {
+  justify-content: center !important;
+  margin: auto !important;
   text-align: center;
 }
 
-.other-events{
+.other-events-container {
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
+}
+
+.other-events {
   width: 20rem;
   background-color: white;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-.date{
+.date {
   font-size: 1.25rem;
   line-height: 1.75rem;
   padding-bottom: 0.75rem;
   font-weight: 500;
-  border-bottom:1px solid black;
+  border-bottom: 1px solid black;
+  margin-bottom: 1.5rem;
 }
 
-.margin-left{
+.margin-left {
   margin-left: 20px;
+}
+
+.buttons {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.details {
+  padding-bottom: 50px;
 }

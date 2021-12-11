@@ -10,14 +10,16 @@
   margin: auto;
 }
 
-.button{
-  margin: 10px;
-  padding: 3px;
-}
-
 .carousel{
   margin-bottom: 30px;
 }
+
+.carousel .card-group {
+  justify-content: center;
+  margin: auto;
+  width: 80%;
+}
+
 .card-text{
   color: black;
   margin-bottom: 40px;
@@ -29,12 +31,26 @@
   max-height: 30rem;
 }
 
-.carousel-control-next, .carousel-control-prev {
-  background-color: #008294;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-size: 100%, 100%;
   border-radius: 50%;
-  height: 14%;
-  width: 3%;
-  top: 34%;
+  filter: invert(100%);
+}
+
+.carousel-control-next-icon:after
+{
+  /*content: '>';*/
+  font-size: 55px;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  /*content: '<';*/
+  font-size: 55px;
+  color: black;
 }
 
 button{
@@ -46,14 +62,6 @@ button{
   width: 80%;
   justify-content: center;
   margin: auto;
-}
-
-*,
-:after,
-:before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 section {

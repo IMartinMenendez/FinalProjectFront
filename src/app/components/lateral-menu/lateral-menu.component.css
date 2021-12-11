@@ -11,8 +11,8 @@
 
 .grid{
   display: inline-grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 100px;
+  grid-template-columns: 20% 31% 31%;
+  grid-gap: 93px;
   margin-bottom: 30px;
 }
 
@@ -31,11 +31,6 @@
   width: 100%;
   margin-bottom: 40px;
 }
-.grid{
-  display: inline-grid;
-  grid-template-columns: 40% 100%;
-  text-align: center;
-}
 
 body {
   margin: 0;
@@ -43,6 +38,8 @@ body {
 }
 
 .sidebar {
+  max-width: 27rem;
+  min-width: 27rem;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -106,6 +103,25 @@ font {
   family: 'Poppins', sans-serif;
 }
 
-.margin-left{
-  margin-left: 10px;
+.header{
+  min-height: 10%;
+  width: 80%;
+  text-align: center;
+  margin: auto;
 }
+
+.body{
+  min-height: 62%;
+  background-color: #c5c4c4;
+  text-align: center;
+  margin: auto;
+}
+
+img{
+  width: 40%;
+}
+
+.img-size{
+  width: 80%;
+}
+

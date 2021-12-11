@@ -1,0 +1,7 @@
+<div class="sidebar">
+  <a routerLink="/home/{{userId}}" routerLinkActive="active">Your Profile</a>
+  <a routerLink="/your-events/{{userId}}" routerLinkActive="active">Your created Events & Courses</a>
+  <a routerLink="/new-events/{{userId}}" routerLinkActive="active">Create a new event</a>
+  <a routerLink="/new-course/{{userId}}" routerLinkActive="active">Create a new course</a>
+  <button class="btn btn-success" (click)="logout()">Log Out</button>
+</div>

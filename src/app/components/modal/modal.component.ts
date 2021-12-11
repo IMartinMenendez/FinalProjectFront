@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -7,13 +7,26 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  modalOpen: boolean = false;
-  @Input('messageProperty')
-  message: string = "";
+  public static message: string = "";
+  public static isDelete: boolean = false;
+  public static onClick: () => void = () => {
+  };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  onClick() {
+    ModalComponent.onClick();
+  }
+
+  get message() {
+    return ModalComponent.message;
+  }
+
+  get isDelete() {
+    return ModalComponent.isDelete;
+  }
 }

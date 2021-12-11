@@ -1,11 +1,5 @@
-<div class="grid">
-  <div class="sidebar">
-    <a class="active" href="#" routerLink="/home">Your Profile</a>
-    <a routerLink="/your-events/{{userId}}">Your created Events & Courses</a>
-    <a routerLink="/new-events/{{userId}}">Create a new event</a>
-    <a routerLink="/new-course/{{userId}}">Create a new course</a>
-    <button class="btn btn-success" (click)="logout()">Log Out</button>
-  </div>
+<div class="grid-profile">
+  <app-lateral-menu></app-lateral-menu>
 
   <div class="container">
     <h1 class="text">{{welcomeMessage}} {{user.name}}! </h1>
@@ -16,39 +10,8 @@
       No event found.
     </div>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">You have unattended from this event</h5>
-          </div>
-          <div class="modal-footer">
-            <button type="button" (click)="modalOpen = false" class="btn btn-secondary margin-left" data-bs-dismiss="modal">Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid" *ngIf="eventsForToday.length > 0">
-      <div class="card" style="width: 18rem;" *ngFor="let meeting of eventsForToday">
-        <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-        <div class="card-body container center" style="width: 80%">
-          <h5 class="card-title">{{meeting.title}}</h5>
-          <div class="group">
-            <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-            <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
-          </div>
-          <p class="card-text">{{meeting.description | slice:0:30}}</p>
-          <div class="buttons-group">
-            <a href="#" class="btn btn-primary" [routerLink]="['/event', meeting.id]">See Event</a>
-            <button type="button" (click)="unattend(meeting.id)" data-bs-target="#staticBackdrop" data-bs-toggle="modal"
-                    class="btn btn-danger margin-left">Unattend
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="card-display" *ngIf="eventsForToday.length > 0">
+      <app-event-card *ngFor="let event of eventsForToday" [event]="event" (sendAlertEvent)="sendAlertReceived()"></app-event-card>
     </div>
 
     <h1 class="date">Events coming soon</h1>
@@ -58,26 +21,12 @@
         No events found. Click here to find events!
       </div>
     </div>
-    <div class="grid" *ngIf="attendeeEvents.length > 0">
-      <div class="card" style="width: 18rem;" *ngFor="let meeting of attendeeEvents">
-        <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-        <div class="card-body container center" style="width: 80%">
-          <h5 class="card-title">{{meeting.title}}</h5>
-          <div class="group">
-            <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-            <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
-          </div>
-          <p class="card-text">{{meeting.description | slice:0:30}}</p>
-          <div class="buttons-group">
-            <a href="#" class="btn btn-primary" [routerLink]="['/event', meeting.id]">See Event</a>
-            <button type="button" (click)="unattend(meeting.id)" data-bs-target="#staticBackdrop" data-bs-toggle="modal"
-                    class="btn btn-danger margin-left">Unattend
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="card-display" *ngIf="attendeeEvents.length > 0">
+      <app-event-card *ngFor="let event of attendeeEvents" [event]="event" (sendAlertEvent)="sendAlertReceived()"></app-event-card>
     </div>
 
   </div>
 
 </div>
+
+

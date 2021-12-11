@@ -20,24 +20,7 @@
     </form>
   </div>
   <div class="grid">
-    <div class="card" style="width: 50rem;" *ngFor="let meeting of page">
-      <img src="{{meeting.picture}}" class="card-img-top" alt="...">
-      <div class="card-body container center" style="width: 80%">
-        <h5 class="card-title">{{meeting.title}}</h5>
-        <div class="group">
-          <h5 class="card-title"><i class='far fa-calendar-alt'></i> {{meeting.date | date: 'dd-MMMM-yyyy'}}</h5>
-          <h5 class="card-title"><i style="color: red" class="fa fa-map-marker"></i> {{meeting.place}}</h5>
-        </div>
-        <p class="card-text">{{meeting.description | slice:0:30}}</p>
-        <div class="center">
-          <a [routerLink]="['/event', meeting.id]" type="button" class="btn btn-success btn-lg button">See this
-            Event</a>
-          <button type="button" (click)="joinMeeting(meeting.id)" data-bs-target="#staticBackdrop"
-                  data-bs-toggle="modal" class="btn btn-warning btn-lg button">Join!
-          </button>
-        </div>
-      </div>
-    </div>
+    <app-event-card *ngFor="let event of page" [event]="event"></app-event-card>
   </div>
   <div class="center-display">
     <nav aria-label="...">
@@ -51,19 +34,6 @@
         </li>
       </ul>
     </nav>
-  </div>
-</div>
-
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Congrats! You successfully joined to this event!</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" (click)="modalOpen = false" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
   </div>
 </div>
 

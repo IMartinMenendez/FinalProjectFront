@@ -5,9 +5,9 @@
       <div id="logbox">
         <h3 class="text-center margin-button pt-5">Login</h3>
         <form id="signup" method="post" [formGroup]="registerForm">
-          <input name="user[name]" type="email" placeholder="What's your email?" (change)="error = ''" [(ngModel)]="emailUser" formControlName="email"
+          <input name="user[name]" type="email" placeholder="What's your email?" (change)="error = ''"  [(ngModel)]="emailUser" formControlName="email"
                 required="required" class="input pass"/>
-          <input name="user[password]" (change)="error = ''" type="password" placeholder="Choose a password" [(ngModel)]="passwordUser" formControlName="password" required="required"
+          <input (change)="error = ''" type="password" placeholder="Choose a password" name="password" autocomplete="on" [(ngModel)]="passwordUser" formControlName="password" required="required"
                  class="input pass"/>
           <div class="alert alert-info" role="alert" *ngIf="registerForm.invalid && emailInput.touched && passwordInput.touched ">
             Please check the fields again!

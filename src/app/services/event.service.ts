@@ -48,6 +48,10 @@ export class EventService {
     return this.http.get<Meeting[]>(this.baseUrl + '/Event/date/' + date + '/' + creator);
   }
 
+  getEventByDateAndUser(date: string, id: number) : Observable<Meeting[]>{
+    return this.http.get<Meeting[]>(this.baseUrl + '/Event/dateByUser/' + date + '/' + id)
+  }
+
   getEventFilterBy(type?: string | null, place?: string | null)  : Observable<Meeting[]>{
     return this.http.get<Meeting[]>(this.baseUrl + '/EventFilter?type=' + type + "&place=" + place);
   }

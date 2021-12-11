@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
   date: string;
   attendeeEvents: Meeting[] = [];
   eventList: Meeting[] = [];
-  comingSoon: Meeting[] = [];
   courses: Course[] = [];
   modalOpen: boolean = false;
   today: string;
@@ -52,10 +51,7 @@ export class HomeComponent implements OnInit {
     let date = new Date();
     this.today = date.getUTCFullYear()         + '-' +
       this.pad(date.getUTCMonth() + 1)  + '-' +
-      this.pad(date.getUTCDate())       + ' ' +
-      this.pad(date.getUTCHours())      + ':' +
-      this.pad(date.getUTCMinutes())    + ':' +
-      this.pad(date.getUTCSeconds());
+      this.pad(date.getUTCDate())       + ' '
   }
 
   ngOnInit(): void {
@@ -72,21 +68,12 @@ export class HomeComponent implements OnInit {
     }
 
     this.getNotifications();
+    this.getAllData();
 
-    this.eventService.getEventsByAttendee(this.tokenService.getUser().id).subscribe(event => {
-      this.attendeeEvents = event;
-    })
+  }
 
-    this.eventService.getEventByDate(this.today, this.tokenService.getUser().id).subscribe(events => {
-      this.eventsForToday = events;
-    })
-
-    this.courseService.getCourseByUserId(this.tokenService.getUser().id).subscribe(courses => {
-      this.courses = courses;
-    })
-    this.userService.getUserById(this.tokenService.getUser().id).subscribe(user => {
-      this.user = user;
-    })
+  sendAlertReceived(): void {
+    this.getAllData();
   }
 
   unattend(id: number){
@@ -94,6 +81,7 @@ export class HomeComponent implements OnInit {
       this.modalOpen = true;
       this.eventService.getEventsByAttendee(this.tokenService.getUser().id).subscribe(event => {
         this.attendeeEvents = event;
+        this.getAllData();
       })
     })
 }
@@ -113,6 +101,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
-pad(num: number) { return ('00'+num).slice(-2) };
+  getAllData(){
+    this.eventService.getEventsByAttendee(this.tokenService.getUser().id).subscribe(event => {
+      this.attendeeEvents = event;
+    })
 
+    this.eventService.getEventByDate(this.today, this.tokenService.getUser().id).subscribe(events => {
+      this.eventsForToday = events;
+    })
+
+    this.courseService.getCourseByUserId(this.tokenService.getUser().id).subscribe(courses => {
+      this.courses = courses;
+    })
+    this.userService.getUserById(this.tokenService.getUser().id).subscribe(user => {
+      this.user = user;
+    })
+  }
+
+pad(num: number) { return ('00'+num).slice(-2) };
 }
