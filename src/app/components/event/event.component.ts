@@ -114,12 +114,8 @@ export class EventComponent implements OnInit {
     }
 
     goToThisEvent(event: Meeting){
-      this.eventService.getEventById(event.id).subscribe(
-        event => {
-          this.meeting = event;
-          this.getEventDetails();
-        }
-      );
+      this.eventId = event.id;
+      this.getEventDetails();
       window.scrollTo(0,  20);
       this.router.navigate(['/event/' + event.id])
     }

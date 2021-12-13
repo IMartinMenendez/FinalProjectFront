@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TokenStorageService} from "../../services/token.service";
 import {AuthSessionService} from "../../services/auth-session.service";
+import {NavBarComponent} from "../../main/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
           this.tokenService.saveToken(user.token);
           this.tokenService.saveUser(user);
           this.router.navigate(['/home', user.id])
+          NavBarComponent.userId = user.id;
 
         },
           error => this.error = "User or Password incorrect"

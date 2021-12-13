@@ -90,6 +90,7 @@ export class HomeComponent implements OnInit {
     this.authSessionService.logout();
     this.tokenService.signOut();
     this.router.navigate(['/'])
+    delete NavBarComponent.userId;
   }
 
   getNotifications(){

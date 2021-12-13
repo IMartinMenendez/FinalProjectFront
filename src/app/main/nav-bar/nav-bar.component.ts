@@ -14,18 +14,18 @@ export class NavBarComponent implements OnInit {
 
   public static notifications: Notification[] = [];
   public static isNofification: boolean = false;
-  userId?: number;
+  public static userId?: number;
 
   constructor(private tokenService: TokenStorageService, private router: Router, private notificationService: NotificationService, private authSessionService: AuthSessionService) { }
 
   ngOnInit(): void {
     this.getNotifications();
-    this.userId = this.tokenService.getUser().id
+    NavBarComponent.userId = this.tokenService.getUser().id
   }
 
   goToHome(){
     if(this.tokenService.getToken() && this.tokenService.getUser()){
-      return this.router.navigate(['/home/' + this.userId])
+      return this.router.navigate(['/home/' + NavBarComponent.userId])
     } else {
       return this.router.navigate(['/login'])
     }
@@ -52,6 +52,10 @@ export class NavBarComponent implements OnInit {
     return NavBarComponent.isNofification;
   }
 
+  isUser(){
+    return NavBarComponent.userId;
+  }
+
   getArrayNofifications(){
     return NavBarComponent.notifications;
   }
@@ -60,7 +64,7 @@ export class NavBarComponent implements OnInit {
     this.authSessionService.logout();
     this.tokenService.signOut();
     this.router.navigate(['/login'])
-    delete this.userId;
+    delete NavBarComponent.userId;
   }
 
 }

@@ -5,19 +5,19 @@
   <a routerLink="/"  class="navbar-brand" href="#"><img class="logo" src="assets/logo1.png"></a>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <li class="nav-item" *ngIf="!userId">
+      <li class="nav-item" *ngIf="!isUser()">
         <a routerLink="/login" class="text-sm-right nav-link" href="#"><h4 style="color: #008294;">Login</h4></a>
       </li>
-      <li class="nav-item" *ngIf="!userId">
+      <li class="nav-item" *ngIf="!isUser()">
         <a routerLink="/register" class="text-sm-right nav-link" href="#"><h4 style="color: #008294;">Sign Up</h4></a>
       </li>
-      <li class="nav-item" *ngIf="userId">
+      <li class="nav-item" *ngIf="isUser()">
         <a (click)="logout()" class="text-sm-right nav-link" href="#"><h4 style="color: #008294;">Log Out</h4></a>
       </li>
     </ul>
   </div>
 
-  <div class="dropdown" *ngIf="userId">
+  <div class="dropdown" *ngIf="isUser()">
   <i class='fas fa-bell' style='font-size:36px' type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
     <span [ngClass]="{'dot' : isNofification()}"></span>
   </i>

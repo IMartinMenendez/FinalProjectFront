@@ -5,6 +5,7 @@ import {UserService} from "../../services/user.service";
 import {CourseService} from "../../services/course.service";
 import {AuthSessionService} from "../../services/auth-session.service";
 import {TokenStorageService} from "../../services/token.service";
+import {NavBarComponent} from "../../main/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-lateral-menu',
@@ -27,5 +28,6 @@ export class LateralMenuComponent implements OnInit {
     this.authSessionService.logout();
     this.tokenService.signOut();
     this.router.navigate(['/'])
+    delete NavBarComponent.userId;
   }
 }
