@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
 import {TokenStorageService} from "../../services/token.service";
+import {ModalComponent} from "../modal/modal.component";
 
 @Component({
   selector: 'app-event',
@@ -67,11 +68,11 @@ export class EventComponent implements OnInit {
             this.modalOpen = true;
             this.userAttendee = true;
             this.getEventDetails();
-            this.message = "You successfully joined this event!"
+            ModalComponent.message = "You successfully joined this event!"
           },
           error => this.message = "You are already enrolled in this course!")
       } else {
-        this.message = "You are already enrolled in this course!"
+        ModalComponent.message = "You are already enrolled in this course!"
       }
     }
   }
@@ -90,7 +91,7 @@ export class EventComponent implements OnInit {
   saveMeeting(id: number){
     this.edit = false;
     this.eventService.updateEvent(this.meeting.id, this.meeting).subscribe(result => {
-        this.message = "Your event has been changed!"
+      ModalComponent.message = "Your event has been changed!"
     })
   }
 
@@ -128,7 +129,7 @@ export class EventComponent implements OnInit {
       this.modalOpen = true;
       this.userAttendee = false;
       this.getEventDetails();
-      this.message = "You have unattended from this event";
+      ModalComponent.message = "You have unattended from this event";
     })
   }
 }

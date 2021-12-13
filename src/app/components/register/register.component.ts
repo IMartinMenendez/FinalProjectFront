@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   email: string = "";
   password: string = "";
   password2: string = "";
-  role: string = "";
+  role: string = "User";
   isAdmin: boolean = false;
 
   //form fields
